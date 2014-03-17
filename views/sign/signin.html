@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>登陆</title>
+		<% include ../inc.html %>
+		<link rel="stylesheet" type="text/css" href="/sign/sign.css">
+		<script src="/sign/sign.js"></script>
+	</head>
+	<body>
+		<div class="container">
+			
+		  	<form class="form-signin" role="form" action="/signin" method="post">
+		  		<img id="logo" src="/favicon.ico" alt="" width="60px" height="60px">
+		    	<h2 class="form-signin-heading">数据库考试系统登陆</h2>
+		    	<% if(typeof error !== 'undefined'){ %>
+					<div class="alert alert-danger alert-dismissable">
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+						<strong><%= error %></strong>
+					</div>
+				<% } %>
+		    	<input type="text" class="form-control" name="loginname" placeholder="学号" required autofocus>
+		    	<input type="password" class="form-control" name="password" placeholder="密码" required>
+		    	<select class="selectpicker" data-width="300px" name="role">
+				  	<option value="student">学生</option>
+				  	<option value="teacher">老师</option>
+				</select>
+		    	<button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+		  	</form>
+
+	    </div>
+	</body>
+</html>

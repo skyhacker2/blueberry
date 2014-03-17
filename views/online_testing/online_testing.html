@@ -1,0 +1,121 @@
+<html>
+	<head>
+		<title>在线测试</title>
+		<% include ../inc.html%>
+		<style>
+			.answer-field {
+				padding-left: 20px;
+			}
+			.form-testing {
+				margin-bottom: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<% include ../navbar.html%>
+		<div class="relavtive content">
+			<h1>第一章 在线测试</h1>
+			<form class="form-testing" action="/online_testing">
+				<div class="panel panel-default">
+				  	<div class="panel-heading">单选题</div>
+				  	<div class="panel-body">
+				  		<p>1. 题目一</p>
+				  		<div class="answer-field">
+					  		<div class="radio">
+						  		<label>
+								  	<input type="radio" name="topic1" value="option1"> 选项1
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="topic1" value="option2"> 选项2
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="topic1" value="option3"> 选项3
+								</label>
+							</div>
+						</div>
+				  	</div>
+				</div>
+
+				<div class="panel panel-default">
+				  	<div class="panel-heading">多选题</div>
+				  	<div class="panel-body">
+				  		<p>1. 题目一</p>
+				  		<div class="answer-field">
+				  			<div class="checkbox">
+						  		<label>
+								  	<input type="checkbox" name="topic1" value="option1"> 选项1
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+								  <input type="checkbox" name="topic1" value="option2"> 选项2
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+								  <input type="checkbox" name="topic1" value="option3"> 选项3
+								</label>
+							</div>
+						</div>
+				  	</div>
+				</div>
+
+				<div class="panel panel-default">
+				  	<div class="panel-heading">判断题</div>
+				  	<div class="panel-body">
+				  		<p>1. 题目一</p>
+				  		<div class="answer-field">
+				  			<div class="radio">
+						  		<label>
+								  	<input type="radio" name="topic1" value="option1"> 对
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="topic1" value="option2"> 错
+								</label>
+							</div>
+						</div>
+				  	</div>
+				</div>
+
+				<div class="panel panel-default">
+				  	<div class="panel-heading">填空题</div>
+				  	<div class="panel-body">
+				  		<p>1. 在这里填___才正确, 第二个空___</p>
+				  		<div class="answer-field row">
+				  			<div class="col-md-6">
+					  			<div class="input-group">
+								  	<span class="input-group-addon">(1)</span>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="input-group">
+								  	<span class="input-group-addon">(2)</span>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+				  		</div>
+				  	</div>
+				</div>
+
+				<div class="panel panel-default">
+				  	<div class="panel-heading">解答题</div>
+				  	<div class="panel-body">
+				  		<p>1. 这是什么问题？</p>
+				  		<div class="answer-field">
+				  			<textarea class="form-control" rows="3"></textarea>
+				  		</div>
+				  	</div>
+				</div>
+				<hr >
+				<button class="btn btn-lg btn-primary" type="submit">提交</button>
+			</form>
+		</div>
+	</body>
+</html>

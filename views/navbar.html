@@ -1,0 +1,101 @@
+<link rel="stylesheet" href="/navbar/navbar.css">
+<script type="text/javascript" src="/navbar/navbar.js"></script>
+<div class="app-bar">
+	<div class="main-menu">
+		<div id="logo">
+			<img src="/favicon.ico" alt="">
+		</div>
+		<ul>
+			<li><a href="javascript:void(0);" id="account" data-menu-type="accout">
+				<span class="icon"><i class="fa fa-user fa-2x"></i></span>
+				<span><%=user.loginname%></span>
+				<span class="icon absolute right"><i class="fa fa-angle-right"></i></span>
+			</a></li>
+			<% if (user.role == "student") {%>
+				<li><a href="javascript:void(0)" id="online-testing" data-menu-type="online-testing">
+					<span class="icon"><i class="fa fa-pencil-square-o fa-2x"></i></span>
+					<span>在线测试</span>
+					<span class="icon absolute right"><i class="fa fa-angle-right"></i></span>
+				</a></li>
+				<li><a href="javascript:void(0)" id="online-examination" data-menu-type="online-examination">
+					<span class="icon"><i class="fa fa-credit-card fa-2x"></i></span>
+					<span>在线考试</span>
+					<span class="icon absolute right"><i class="fa fa-angle-right"></i></span>
+				</a></li>
+				<li><a href="javascript:void(0)" id="view-grade">
+					<span class="icon"><i class="fa fa-bar-chart-o fa-2x"></i></span>
+					<span>查看成绩</span>
+				</a></li>
+			<%} else {%>
+				<li><a href="javascript:void(0)" id="generate-pager" data-menu-type="generate-pager">
+					<span class="icon"><i class="fa fa-credit-card fa-2x"></i></span>
+					<span>生成试卷</span>
+					<span class="icon absolute right"><i class="fa fa-angle-right"></i></span>
+				</a></li>
+				<li><a href="javascript:void(0)" id="view-grade">
+					<span class="icon"><i class="fa fa-bar-chart-o fa-2x"></i></span>
+					<span>查看成绩</span>
+				</a></li>
+			<%}%>
+		</ul>
+	</div>
+	<div class="sub-menu" id="accout-menu">
+		<ul>
+			<li class="title">账号管理</li>
+			<li><a href="#">
+				修改密码
+			</a></li>
+			<li><a href="/signout">
+				退出
+			</a></li>
+			<li class="footer">© Blueberry</li>
+		</ul>
+	</div>
+	<div class="sub-menu" id="generate-pager-menu">
+		<ul>
+			<li class="title">章节</li>
+			<% for(var i = 0; i < chapters.length; i++) {%>
+				<li><a href="#">
+				<%= chapters[i].title%>
+			</a></li>
+			<%}%>
+			<li class="footer">© Blueberry</li>
+		</ul>
+	</div>
+	<div class="sub-menu" id="view-grade-menu">
+		<ul>
+			<li class="title">章节</li>
+			<% for(var i = 0; i < chapters.length; i++) {%>
+				<li><a href="#">
+				<%= chapters[i].title%>
+			</a></li>
+			<%}%>
+			<li class="footer">© Blueberry</li>
+		</ul>
+	</div>
+	<div class="sub-menu" id="online-testing-menu">
+		<ul>
+			<li class="title">章节</li>
+			<% for(var i = 0; i < chapters.length; i++) {%>
+				<li><a href="/online_testing/<%=i+1%>">
+				<%= chapters[i].title%>
+			</a></li>
+			<%}%>
+			<li class="footer">© Blueberry</li>
+		</ul>
+	</div>
+	<div class="sub-menu" id="online-examination-menu">
+		<ul>
+			<li class="title">章节</li>
+			<% for(var i = 0; i < chapters.length; i++) {%>
+				<li><a href="#">
+				<%= chapters[i].title%>
+			</a></li>
+			<li class="footer">© Blueberry</li>
+			<%}%>
+		</ul>
+	</div>
+	<a class="handler" href="javascript:void(0)">
+		<i class="fa fa-angle-right fa-2x"></i>
+	</a>
+</div>
