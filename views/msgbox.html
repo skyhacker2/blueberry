@@ -1,0 +1,85 @@
+
+<style>
+	.msgbox {
+		list-style: none;
+  		padding: 20px 0 20px;
+  		position: relative;
+	}
+	.msgbox li .msgbox-panel {
+		width: 100%
+		float: left;
+		border: 1px solid #d4d4d4;
+		border-radius: 2px;
+		padding: 20px;
+		position: relative;
+		margin-bottom: 20px;
+		/*-webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);*/
+		/*box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);*/
+	}
+	.flag {
+		background-color: #B94A4B;
+		color: #FFF;
+		border-bottom-left-radius: 4px;
+		border-top-left-radius: 4px;
+		font-size: 12px;
+		opacity: 0.9;
+		padding: 5px 10px;
+		position: absolute;
+		right: -5px;
+		text-align: center;
+		top: 5px;
+	}
+	.flag i {
+		border-top: 4px solid transparent;
+		border-left: 4px solid #B94A4B;
+		border-bottom: 4px solid transparent;
+		border-right: 4px solid transparent;
+		bottom: -4px;
+		content: "";
+		display: inline-block;
+		height: 0px;
+		opacity: 0.8;
+		position: absolute;
+		right: -3px;
+		vertical-align: middle;
+		width: 0px;
+	}
+	.flag.readed i {
+		border-left: 4px solid #47a447;
+	}
+	.flag.readed {
+		background-color: #47a447;
+	}
+</style>
+<ul class="msgbox">
+	<li>
+		<div class="msgbox-panel">
+			<div class="flag"><i></i>New</div>
+			<div class="msg-heading">
+				<h4 class="msg-title">考试1</h4>
+				<p>
+					<small class="text-muted"><i class="fa fa-clock-o"></i>2014年3月18日</small>
+					<small class="text-muted"><i class="fa fa-user">何老师</i></small>
+				</p>
+			</div>
+			<div class="msg-body">
+				<p>请同学们在星期二前完成考试1.</p>
+			</div>
+		</div>
+	</li>
+	<li>
+		<div class="msgbox-panel">
+			<div class="flag readed"><i></i>Readed</div>
+			<div class="msg-heading">
+				<h4 class="msg-title">考试2</h4>
+				<p>
+					<small class="text-muted"><i class="fa fa-clock-o"></i>2014年3月10日</small>
+					<small class="text-muted"><i class="fa fa-user">何老师</i></small>
+				</p>
+			</div>
+			<div class="msg-body">
+				<p>请同学们在星期一前完成考试二.</p>
+			</div>
+		</div>
+	</li>
+</ul>
