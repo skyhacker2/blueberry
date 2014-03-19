@@ -71,11 +71,11 @@
 .overflow-hidden {
 	overflow: hidden;
 }
-/*
+
 .app-bar, .content, .main-menu, .sub-menu {
 	transition: all 0.2s ease-in-out;
 }
-*/
+
 body .content {
 	margin-left: 65px;
 	padding: 20px;
@@ -85,20 +85,21 @@ body .content {
 body.long-menu .content {
 	margin-left: 220px;
 }
-.content, .sub-menu {
+/*
+.content, .sub-menu, .main-menu {
 	transition: all 0.2s cubic-bezier(.7, 0, .175, 1) 0s;
 }
-
-body.sub-menu-shown .content {
-	/*margin-left: 335px;*/
-	-webkit-transform: translate(220px, 0);
-	transform: translate(220px, 0);
-}
-/*
-body.long-menu.sub-menu-shown .content {
-	margin-left: 470px;
-}
 */
+body.sub-menu-shown .content {
+	margin-left: 335px;
+	/*-webkit-transform: translate(220px, 0);*/
+	/*transform: translate(220px, 0);*/
+}
+
+body.long-menu.sub-menu-shown .content {
+	margin-left: 440px;
+}
+
 .app-bar.mouse-enter #logo img {
 	position: absolute;
 	top: 20px;

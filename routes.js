@@ -10,6 +10,7 @@ module.exports = function(app) {
 	app.get('/signin', sign.showSignin);
 	app.post('/signin', sign.login);
 	app.get('/signout', sign.signout);
+	app.get('/changePassword', sign.showChangePassword);
 
 	// 在线测试
 	app.get('/online_testing/:chapter_id', online_testing.showTesting);

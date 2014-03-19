@@ -45,6 +45,11 @@ exports.signout = function (req, res, next) {
   	res.redirect('/signin');
 };
 
+// 修改密码
+exports.showChangePassword = function(req, res, next) {
+	res.render('sign/change-password');
+}
+
 /**
 * 验证用户 中间件
 */

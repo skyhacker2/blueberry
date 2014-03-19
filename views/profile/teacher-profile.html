@@ -1,0 +1,88 @@
+
+<style>
+	#examination .table {
+		margin-top: 20px;
+	}
+	#notify {
+		margin-top: 20px;
+	}
+</style>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  	<li class="active"><a href="#notify" data-toggle="tab">发出的通知 <span class="badge">42</span></a></li>
+  	<li><a href="#examination" data-toggle="tab">发布的考试</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  	<div class="tab-pane active" id="notify">
+  		<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+		发布新通知
+		</button>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        		<h4 class="modal-title" id="myModalLabel">发布新通知</h4>
+		      		</div>
+		      		<div class="modal-body">
+		      			<form role="form">
+		      				<div class="form-group">
+		      					<label for="msg-title">标题</label>
+		        				<input type="text" class="form-control" id="msg-title">
+			        		</div>
+			        		<div class="form-group">
+			        			<label for="msg-body">内容</label>
+			        			<textarea class="form-control" rows="3" id="msg-body"></textarea>
+			        		</div>
+		        		</form>
+		      		</div>
+			      	<div class="modal-footer">
+			        	<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        	<button type="button" class="btn btn-primary" id="send-msg-btn" data-loading-text="发布中..." data-complete-text="发布成功!">发布</button>
+			      	</div>
+		    	</div><!-- /.modal-content -->
+		  	</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+  		<%include ../msgbox.html%>
+  	</div>
+  	<div class="tab-pane" id="examination">
+  		<table class="table table-bordered">
+  			<thead>
+			  	<tr>
+			  		<th>试卷号</th>
+			  		<th>考试人数</th>
+			  		<th>发布时间</th>
+			  	</tr>
+			  </thead>
+			  <tbody>
+				  	<tr>
+				  		<td>1002</td>
+				  		<td>100</td>
+				  		<td>2014-03-12</td>
+				  	</tr>
+				  	<tr>
+				  		<td>1003</td>
+				  		<td>99</td>
+				  		<td>2014-03-13</td>
+				  	</tr>
+			  </tbody>
+		</table>
+  	</div>
+</div>
+<script>
+	$(document).ready(function() {
+		$('#send-msg-btn').click(function() {
+			$(this).button('loading');
+			var that = this;
+			setTimeout(function(){
+				$(that).button('complete');
+				setTimeout(function(){
+					$('#myModal').modal('hide');
+				}, 500);
+			}, 1000);
+		});
+	});
+</script>

@@ -1,0 +1,41 @@
+<style>
+	#finished_examination .table {
+		margin-top: 20px;
+	}
+
+</style>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  	<li class="active"><a href="#notify" data-toggle="tab">通知 <span class="badge">42</span></a></li>
+  	<li><a href="#finished_examination" data-toggle="tab">完成的考试</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  	<div class="tab-pane active" id="notify">
+  		<%include ../msgbox.html%>
+  	</div>
+  	<div class="tab-pane" id="finished_examination">
+  		<table class="table table-bordered">
+  			<thead>
+			  	<tr>
+			  		<th>学号</th>
+			  		<th>试卷号</th>
+			  		<th>成绩</th>
+			  	</tr>
+			  </thead>
+			  <tbody>
+				  	<tr>
+				  		<td>AP1006431</td>
+				  		<td>1002</td>
+				  		<td>100</td>
+				  	</tr>
+				  	<tr>
+				  		<td>AP1006431</td>
+				  		<td>1003</td>
+				  		<td>99</td>
+				  	</tr>
+			  </tbody>
+		</table>
+  	</div>
+</div>

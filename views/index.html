@@ -3,7 +3,6 @@
 		<title>Blueberry</title>
 		<% include inc.html%>
 	</head>
-	<link rel="stylesheet" href="/profile/timeline.css">
 	<style>
 	.basic-info {
 		position: relative;
@@ -30,9 +29,6 @@
 	.basic-info .info .name {
 		font-size: 50px;
 	}
-	#finished_examination .table {
-		margin-top: 20px;
-	}
 	.user-content {
 		margin-top: 20px;
 	}
@@ -45,53 +41,29 @@
 				<div class="info">
 					<div class="name"><%=user.loginname%></div>
 					<div class="row">
-						<div class="col-md-6">
-							<div><label>完成测试: </label>10</div>
-							<div><label>完成考试: </label>10</div>
-						</div>
-						<div class="col-md-6">
-							<div><label>未完成考试: </label>1</div>
-						</div>
+						<%if (user.role == 'student') {%>		
+							<div class="col-md-6">
+								<div><label>完成测试: </label>10</div>
+								<div><label>完成考试: </label>10</div>
+							</div>
+							<div class="col-md-6">
+								<div><label>未完成考试: </label>1</div>
+							</div>
+						<%} else {%>
+							<div class="col-md-6">
+								<div><label>发布的考试: </label>10</div>
+								<div><label>完成的考试: </label>10</div>
+							</div>
+						<%}%>
 					</div>
 				</div>
 			</div>
 			<div class="user-content">
-				<!-- Nav tabs -->
-				<ul class="nav nav-tabs">
-				  	<li class="active"><a href="#notify" data-toggle="tab">通知 <span class="badge">42</span></a></li>
-				  	<li><a href="#finished_examination" data-toggle="tab">完成的考试</a></li>
-				</ul>
-
-				<!-- Tab panes -->
-				<div class="tab-content">
-				  	<div class="tab-pane active" id="notify">
-				  		<% include msgbox.html%>
-				  	</div>
-				  	<div class="tab-pane" id="finished_examination">
-				  		<table class="table table-bordered">
-				  			<thead>
-							  	<tr>
-							  		<th>学号</th>
-							  		<th>试卷号</th>
-							  		<th>成绩</th>
-							  	</tr>
-							  </thead>
-							  <tbody>
-								  	<tr>
-								  		<td>AP1006431</td>
-								  		<td>1002</td>
-								  		<td>100</td>
-								  	</tr>
-								  	<tr>
-								  		<td>AP1006431</td>
-								  		<td>1003</td>
-								  		<td>99</td>
-								  	</tr>
-							  </tbody>
-						</table>
-				  	</div>
-				</div>
-
+				<%if (user.role == 'student') {%>
+					<% include profile/student-profile.html%>
+				<%} else {%>
+					<% include profile/teacher-profile.html%>
+				<%}%>
 			</div>
 		</div>
 	</body>
