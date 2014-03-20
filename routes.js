@@ -1,6 +1,8 @@
 var site = require('./controllers/site'),
 	sign = require('./controllers/sign'),
-	online_testing = require('./controllers/online_testing');
+	online_testing = require('./controllers/online_testing'),
+	pager = require('./controllers/pager');
+
 
 module.exports = function(app) {
 	app.get('/', site.index);
@@ -14,4 +16,7 @@ module.exports = function(app) {
 
 	// 在线测试
 	app.get('/online_testing/:chapter_id', online_testing.showTesting);
+
+	// 试卷相关
+	app.get('/generatePager/:chapter_id', pager.showGeneratePager);
 };

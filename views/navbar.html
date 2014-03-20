@@ -30,12 +30,12 @@
 			<%} else {%>
 				<li><a href="javascript:void(0)" id="generate-pager" data-menu-type="generate-pager">
 					<span class="icon"><i class="fa fa-credit-card fa-2x"></i></span>
-					<span>生成试卷</span>
+					<span>试卷生成</span>
 					<span class="icon absolute right"><i class="fa fa-angle-right"></i></span>
 				</a></li>
 				<li><a href="javascript:void(0)" id="view-grade">
 					<span class="icon"><i class="fa fa-bar-chart-o fa-2x"></i></span>
-					<span>查看成绩</span>
+					<span>成绩统计</span>
 				</a></li>
 			<%}%>
 		</ul>
@@ -57,7 +57,7 @@
 		<ul>
 			<li class="title">章节</li>
 			<% for(var i = 0; i < chapters.length; i++) {%>
-				<li><a href="#">
+				<li><a href="/generatePager/<%=i+1%>">
 				<%= chapters[i].title%>
 			</a></li>
 			<%}%>

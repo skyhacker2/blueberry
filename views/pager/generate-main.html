@@ -1,0 +1,192 @@
+<html>
+	<head>
+		<title>选择试题</title>
+		<% include ../inc.html%>
+	</head>
+	<style>
+		.select-box {
+			border: solid 1px #ccc;
+			height: 400px;
+			/*border-radius: 5px;*/
+			overflow-y: scroll;
+			/*-webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);*/
+			margin-top: 10px;
+		}
+		.question-group {
+			margin-bottom: 20px;
+		}
+		.questions {
+			list-style-type: decimal;
+			margin: 0;
+			/*padding: 0;*/
+		}
+		.questions .parent{
+			line-height: 39px;
+			display: block;
+			padding: 0 13px;
+			background-color: #fbfbfb;
+			border-bottom: solid 1px #eeeeee;
+			border-left: solid 1px #eee;
+		}
+		.questions .parent:hover {
+			text-decoration: none;
+			background-color: #f7f7f7;
+			cursor: default;
+		}
+		.questions .parent .fa {
+			line-height: 39px;
+			color: #000;
+		}
+
+	</style>
+	<body>
+		<% include ../navbar.html%>
+		<div class="relavtive content">
+			<h1>选择试题</h1>
+			<hr>
+			<div class="question-group">
+				<h2>单选题</h2>
+				<div>
+					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+
+						<div class="select-box">
+							<ul class="questions questions-left single">
+								<li>
+									<a class="parent" href="javascript:void(0);">题目一</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目三</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="select-box">
+							<ul class="questions questions-right single">
+								<li>
+									<a class="parent" href="javascript:void(0);">题目四</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目五</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目六</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目七</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 多选题 -->
+			<div class="question-group">
+				<h2>多选题</h2>
+				<div>
+					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="select-box">
+							<ul class="questions questions-left multiple">
+								<li>
+									<a class="parent" href="javascript:void(0);">题目一</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目三</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="select-box">
+							<ul class="questions questions-right multiple">
+								<li>
+									<a class="parent" href="javascript:void(0);">题目四</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目五</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目六</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目七</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 填空题 -->
+			<div class="question-group">
+				<h2>填空题</h2>
+				<div>
+					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="select-box">
+							<ul class="questions questions-left fill">
+								<li>
+									<a class="parent" href="javascript:void(0);">题目一</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目三</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="select-box">
+							<ul class="questions questions-right fill">
+								<li>
+									<a class="parent" href="javascript:void(0);">题目四</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目五</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目六</a>
+								</li>
+								<li>
+									<a class="parent" href="javascript:void(0);">题目七</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<% include steps.html%>
+		</div>
+		<script>
+			$(document).on('dblclick', ".questions-left.single li", function() {
+				$(".questions-right.single").append($(this).clone());
+				$(this).remove();
+			});
+			$(document).on('dblclick', ".questions-right.single li", function() {
+				$(".questions-left.single").append($(this).clone());
+				$(this).remove();
+			});
+
+		</script>
+	</body>
+</html>
