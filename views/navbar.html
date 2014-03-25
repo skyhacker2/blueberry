@@ -28,10 +28,9 @@
 					<span>查看成绩</span>
 				</a></li>
 			<%} else {%>
-				<li><a href="javascript:void(0)" id="generate-pager" data-menu-type="generate-pager">
+				<li><a href="/generatePager1" id="generate-pager">
 					<span class="icon"><i class="fa fa-credit-card fa-2x"></i></span>
 					<span>试卷生成</span>
-					<span class="icon absolute right"><i class="fa fa-angle-right"></i></span>
 				</a></li>
 				<li><a href="javascript:void(0)" id="view-grade">
 					<span class="icon"><i class="fa fa-bar-chart-o fa-2x"></i></span>
@@ -50,17 +49,6 @@
 			<li><a href="/signout">
 				退出
 			</a></li>
-			<li class="footer">© Blueberry</li>
-		</ul>
-	</div>
-	<div class="sub-menu" id="generate-pager-menu">
-		<ul>
-			<li class="title">章节</li>
-			<% for(var i = 0; i < chapters.length; i++) {%>
-				<li><a href="/generatePager/<%=i+1%>">
-				<%= chapters[i].title%>
-			</a></li>
-			<%}%>
 			<li class="footer">© Blueberry</li>
 		</ul>
 	</div>

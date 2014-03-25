@@ -1,14 +1,30 @@
 <style>
 
-	.full-screen-page-footer {
+	body.long-menu .full-screen-page-footer {
 	  height: 60px;
 	  background-color: #fff;
-	  position: relative;
+	  position: fixed;
 	  bottom: 0;
 	  left: 0;
 	  width: 100%;
 	  padding: 0;
 	  margin: 0;
+	  margin-left: 220px;
+	  border-top: solid 1px #eeeeee;
+	  z-index: 1028;
+	  -webkit-transition: all 0.2s;
+	  transition: all 0.2s;
+	}
+	.full-screen-page-footer {
+	  height: 60px;
+	  background-color: #fff;
+	  position: fixed;
+	  bottom: 0;
+	  left: 0;
+	  width: 100%;
+	  padding: 0;
+	  margin: 0;
+	  margin-left: 65px;
 	  border-top: solid 1px #eeeeee;
 	  z-index: 1028;
 	  -webkit-transition: all 0.2s;
@@ -16,7 +32,8 @@
 	}
 
 	.full-screen-page-footer > .footer-inner {
-	  padding: 10px;
+		position: relative;
+	  	padding: 10px;
 	}
 	.full-screen-page-footer > .footer-inner:before,
 	.full-screen-page-footer > .footer-inner:after {
@@ -47,6 +64,17 @@
 	}
 	.full-screen-page-footer > .footer-inner button.pull-right {
 	  margin-left: 10px;
+	}
+	body.long-menu .full-screen-page-footer > .footer-inner .steps {
+	  font-weight: normal;
+	  margin: 0;
+	  padding: 0;
+	  list-style: none;
+	  width: 480px;
+	  position: absolute;
+	  left: 50%;
+	  margin-left: -240px;
+	  top: 10px;
 	}
 	.full-screen-page-footer > .footer-inner .steps {
 	  font-weight: normal;
@@ -167,17 +195,40 @@
 	.full-screen-page-footer > .footer-inner .steps > li.on .dropdown-menu {
 	  display: block;
 	}
+	body.long-menu .full-screen-page-footer .next {
+		position: absolute;
+		right: 230px;
+	}
+	.full-screen-page-footer .next {
+		position: absolute;
+		right: 75px;
+	}
 </style>
 <div class="full-screen-page-footer">
 	<div class="footer-inner">
-		<button class="btn btn-default"><i class="fa fa-arrow-left"></i>上一步</button> 
+		<%if (step != 1) {%>
+			<button class="btn btn-default previous"><i class="fa fa-arrow-left"></i>上一步</button> 
+		<%}%>
 		<ul class="steps">
-			<li class="active"><a href="javascript:void(0);"><span>配置试卷</span></a></li>
+			<li><a href="/generatePager1"><span>配置试卷</span></a></li>
 			<li>
-				<a href="javascript:void(0);"><span>选择试题</span></a>
+				<a href="/generatePager2"><span>选择试题</span></a>
 			</li>
-			<li><a href="javascript:void(0);"><span>确定试卷</span></a></li>
+			<li><a href="/generatePager3"><span>确定试卷</span></a></li>
 		</ul>
-		<button class="btn btn-default pull-right">下一步 <i class="fa fa-arrow-right"></i></button> 
+		<% if (step != 3) {%>
+			<button class="btn btn-default next">下一步 <i class="fa fa-arrow-right"></i></button> 
+		<%} else {%>
+			<button class="btn btn-default pull-right  next finish">完 成 <i class="fa fa-check"></i></button> 
+		<%}%>
 	</div>
 </div>
+<script>
+	$(".steps li:eq(<%=step-1%>)").addClass("active");
+	$(".next").click(function() {
+		location.href = "<%=nextUrl%>";
+	});
+	$(".previous").click(function() {
+		history.back(-1);
+	});
+</script>

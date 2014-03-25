@@ -18,5 +18,7 @@ module.exports = function(app) {
 	app.get('/online_testing/:chapter_id', online_testing.showTesting);
 
 	// 试卷相关
-	app.get('/generatePager/:chapter_id', pager.showGeneratePager);
+	app.get('/generatePager1', pager.showGeneratePager1);
+	app.get('/generatePager2', pager.showGeneratePager2);
+	app.get('/generatePager3', pager.showGeneratePager3);
 };

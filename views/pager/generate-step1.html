@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>试卷信息</title>
+		<% include ../inc.html%>
+		<style>
+		.content {
+			padding-bottom: 60px;
+		}
+		</style>
+	</head>
+	<body>
+		
+	<% include ../navbar.html%>
+		<div class="relavtive content">
+			<h1>试卷信息</h1>
+			<hr>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="page-title">试卷名称</label>
+						<input type="text" id="page-title" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="">第几章</label><br>
+						<select class="selectpicker" data-width="300px" name="role">
+						  	<option value="1">第一章</option>
+						  	<option value="2">第二章</option>
+						  	<option value="3">第三章</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="signle-num">单选题数目</label>
+						<input type="text" id="single-num" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="multiple-num">多选题数目</label>
+						<input type="text" id="multiple-num" class="form-control">
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="judge-num">判断题数目</label>
+						<input type="text" id="judge-num" class="form-control">
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="fill-num">填空题数目</label>
+						<input type="text" id="fill-num" class="form-control">
+					</div>
+				</div>
+			</div>
+		</div>
+		<% include steps.html%>
+	</body>
+	<script>
+		$(document).ready(function() {
+			$('.selectpicker').selectpicker();
+		});
+	</script>
+</html>
