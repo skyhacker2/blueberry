@@ -225,9 +225,7 @@
 </div>
 <script>
 	$(".steps li:eq(<%=step-1%>)").addClass("active");
-	$(".next").click(function() {
-		location.href = "<%=nextUrl%>";
-	});
+
 	$(".previous").click(function() {
 		history.back(-1);
 	});

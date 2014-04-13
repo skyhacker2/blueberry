@@ -12,6 +12,9 @@
     "express": "^3.4.8",
     "ejs": "^0.8.5",
     "mongoose": "^3.8.8",
-    "validator": "^3.5.0"
+    "validator": "^3.5.0",
+    "mysql": "^2.1.1",
+    "eventproxy": "^0.3.1",
+    "date-format": "0.0.2"
   }
 }

@@ -1,28 +1,30 @@
+var connection = require('./connection.js');
 
 
-var singles = [
-	{
-		question_id: 0,
-		topic: "试题1",
-		optionA: "选项1",
-		optionB: "选项2",
-		optionC: "选项3",
-		optionD: "选项4",
-		answer: "A",
-		chapter_id: 1
-	},
-	{
-		question_id: 1,
-		topic: "试题2",
-		optionA: "选项1",
-		optionB: "选项2",
-		optionC: "选项3",
-		optionD: "选项4",
-		answer: "B",
-		chapter_id: 1
-	}
-];
 
-exports.getSingleRandom = function(num, callback) {
-	return callback(null, singles);
-};
+// 随机选出题目
+exports.getByRandom = function(chapter_id, num, callback) {
+	connection.query("SELECT * FROM question.single WHERE chapter_id=? ORDER BY rand() LIMIT ?", 
+		[chapter_id, num], function(err, rows) {
+			callback(err, rows);
+	});
+}
+
+exports.getAllExcept = function(chapter_id, excepts, callback) {
+	connection.query("SELECT * FROM question.single WHERE chapter_id = ?", [chapter_id], function(err, rows) {
+		if(err) {
+			consolg.log(err);
+		} else {
+			var data = rows.filter(function(s) {
+				for (var i = 0; i < excepts.length; i++) {
+					if (excepts[i].question_id == s.question_id) {
+						return false;
+					}
+				}
+				return true;
+			});
+			callback(data);
+		}
+	});
+}
+

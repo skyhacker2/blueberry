@@ -13,12 +13,16 @@ module.exports = function(app) {
 	app.post('/signin', sign.login);
 	app.get('/signout', sign.signout);
 	app.get('/changePassword', sign.showChangePassword);
+	app.post('/changePassword.json', sign.changePassword);
 
 	// 在线测试
 	app.get('/online_testing/:chapter_id', online_testing.showTesting);
+	app.post('/online_testing', online_testing.checkAnswer);
 
 	// 试卷相关
 	app.get('/generatePager1', pager.showGeneratePager1);
 	app.get('/generatePager2', pager.showGeneratePager2);
 	app.get('/generatePager3', pager.showGeneratePager3);
+	app.post('/generatePager1.json', pager.generatePager1); // 试卷头
+	app.post('/generatePager2.json', pager.generatePager2); // 保存试卷
 };

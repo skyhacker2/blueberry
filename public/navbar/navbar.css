@@ -144,6 +144,7 @@ body.long-menu.sub-menu-shown .content {
 	left: 65px;
 	top: 0;
 	background-color: #373737;
+	z-index: 999;
 }
 .app-bar.mouse-enter .sub-menu {
 	left: 220px;
@@ -159,6 +160,7 @@ body.long-menu.sub-menu-shown .content {
 	padding: 0px;
 	overflow-y: auto;
 	overflow-x: hidden;
+	margin-bottom: 30px;
 }
 .app-bar .sub-menu li {
 	background-color: #484848;
@@ -187,17 +189,23 @@ body.long-menu.sub-menu-shown .content {
 	background-color: #4d4d4d;
 	text-decoration: none;
 }
-.app-bar .sub-menu li.title, .app-bar .sub-menu li.footer {
+.app-bar .sub-menu .title, .app-bar .sub-menu .footer {
 	text-align: center;
 	background-color: #515151;
 	line-height: 30px;
 	color:#959595;
+
 }
-.app-bar .sub-menu li.footer {
-	position: absolute;
+.app-bar .sub-menu .footer {
+	position: fixed;
 	bottom: 0;
-	left: 0;
-	right: 0;
+	left: 65px;
+	width: 220px;
+	display: none;
+	transition: all 0.2s ease-in-out;
+}
+.app-bar.mouse-enter .sub-menu .footer {
+	left: 220px;
 }
 .absolute {
 	position: absolute;
@@ -205,6 +213,9 @@ body.long-menu.sub-menu-shown .content {
 .right {
 	right: 0px;
 }
-.app-bar .sub-menu.shown {
+.app-bar .sub-menu.shown{
 	width: 220px;
+}
+.app-bar .sub-menu.shown .footer {
+	display: block;
 }

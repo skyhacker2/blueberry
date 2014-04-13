@@ -1,37 +1,26 @@
+var connection = require('./connection.js');
 
-var multiples = [
-	{
-		question_id: 0,
-		topic: "多选题11111",
-		optionA: "选项1", 
-		optionB: "选项2",
-		optionC: "选项3",
-		optionD: "选项4",
-		answer: "A,B,C",
-		chapter_id: 1
-	},
-	{
-		question_id: 1,
-		topic: "多选题2222",
-		optionA: "选项1", 
-		optionB: "选项2",
-		optionC: "选项3",
-		optionD: "选项4",
-		answer: "A,B,C",
-		chapter_id: 1
-	},
-	{
-		question_id: 2,
-		topic: "多选题222",
-		optionA: "选项1", 
-		optionB: "选项2",
-		optionC: "选项3",
-		optionD: "选项4",
-		answer: "A,B,C",
-		chapter_id: 1
-	}
-];
+exports.getByRandom = function(chapter_id, num, callback) {
+	connection.query("SELECT * FROM question.multiple WHERE chapter_id=? ORDER BY rand() LIMIT ?", 
+		[chapter_id, num], function(err, rows) {
+			callback(err, rows);
+	});
+}
 
-exports.getMultipleRandom = function(num, callback) {
-	return callback(null, multiples);
-};
+exports.getAllExcept = function(chapter_id, excepts, callback) {
+	connection.query("SELECT * FROM question.multiple WHERE chapter_id = ?", [chapter_id], function(err, rows) {
+		if(err) {
+			consolg.log(err);
+		} else {
+			var data = rows.filter(function(s) {
+				for (var i = 0; i < excepts.length; i++) {
+					if (excepts[i].question_id == s.question_id) {
+						return false;
+					}
+				}
+				return true;
+			});
+			callback(data);
+		}
+	});
+}

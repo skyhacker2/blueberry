@@ -24,13 +24,23 @@ app.use(express.cookieParser('blueberry'));
 app.use(express.session());
 
 // 自定义中间件
+// 认证用户是否登录
 app.use(require('./controllers/sign').auth_user);
+
+// 将session变量设置到locals中，使ejs能读取到变量
 app.use(function(req, res, next) {
 	res.locals.user = req.session ? req.session.user : "";
-	Chapter.getAllSection(function(chapters) {
+
+	// 查找所有章节
+	Chapter.getAllChapters(function(err, chapters) {
+		if(err) {
+			console.log(err);
+			res.locals.chapters = [];
+			next();
+		}
 		res.locals.chapters = chapters;
+		next();
 	});
-	next();
 });
 
 // 路由

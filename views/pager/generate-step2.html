@@ -24,12 +24,13 @@
 			/*padding: 0;*/
 		}
 		.questions .parent{
-			line-height: 39px;
+			line-height: 30px;
 			display: block;
 			padding: 0 13px;
 			background-color: #fbfbfb;
 			border-bottom: solid 1px #eeeeee;
 			border-left: solid 1px #eee;
+			color: #000;
 		}
 		.questions .parent:hover {
 			text-decoration: none;
@@ -42,6 +43,13 @@
 		}
 		.content {
 			padding-bottom: 60px;
+			max-width:800px !important;
+			width: auto !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+		hr {
+			margin-bottom: 80px;
 		}
 
 	</style>
@@ -54,40 +62,29 @@
 				<h2>单选题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+					<p>你设置了: <%=pager.singleNum%>题, 已经选择: <span id="single-selected-num"><%=pager.singleNum%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 
 						<div class="select-box">
 							<ul class="questions questions-left single">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目一</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目三</a>
-								</li>
+								<%for(var i = 0; i < pager.singleNum; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=pager.singles[i].question_id%>"><%=pager.singles[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-right single">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目四</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目五</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目六</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目七</a>
-								</li>
+								<%for(var i = 0; i < questions.singles.length; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=questions.singles[i].question_id%>"><%=questions.singles[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
@@ -99,39 +96,28 @@
 				<h2>多选题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+					<p>你设置了: <%=pager.multipleNum%>题, 已经选择: <span id="multiple-selected-num"><%=pager.multipleNum%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-left multiple">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目一</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目三</a>
-								</li>
+								<%for(var i = 0; i < pager.multipleNum; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=pager.multiples[i].question_id%>"><%=pager.multiples[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-right multiple">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目四</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目五</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目六</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目七</a>
-								</li>
+								<%for(var i = 0; i < questions.multiples.length; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=questions.multiples[i].question_id%>"><%=questions.multiples[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
@@ -142,39 +128,28 @@
 				<h2>判断题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+					<p>你设置了: <%=pager.judgeNum%>题, 已经选择: <span id="judge-selected-num"><%=pager.judgeNum%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-left judge">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目一</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目三</a>
-								</li>
+								<%for(var i = 0; i < pager.judgeNum; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=pager.judges[i].question_id%>"><%=pager.judges[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-right judge">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目四</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目五</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目六</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目七</a>
-								</li>
+								<%for(var i = 0; i < questions.judges.length; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=questions.judges[i].question_id%>"><%=questions.judges[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
@@ -186,39 +161,28 @@
 				<h2>填空题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: 4题, 已经选择: <span>4</span>题</p>
+					<p>你设置了: <%=pager.fillNum%>题, 已经选择: <span id="fill-selected-num"><%=pager.fillNum%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-left fill">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目一</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">我是一道好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长好长的题目</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目三</a>
-								</li>
+								<%for(var i = 0; i < pager.fillNum; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=pager.fills[i].question_id%>"><%=pager.fills[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-right fill">
-								<li>
-									<a class="parent" href="javascript:void(0);">题目四</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目五</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目六</a>
-								</li>
-								<li>
-									<a class="parent" href="javascript:void(0);">题目七</a>
-								</li>
+								<%for(var i = 0; i < questions.fills.length; i++) {%>
+									<li>
+										<a class="parent" href="javascript:void(0);" data-id="<%=questions.fills[i].question_id%>"><%=questions.fills[i].topic%></a>
+									</li>
+								<%}%>
 							</ul>
 						</div>
 					</div>
@@ -228,39 +192,103 @@
 		</div>
 		<script>
 			$(document).on('dblclick', ".questions-left.single li", function() {
+				var num = +$("#single-selected-num").html();
+				$("#single-selected-num").html(num-1);
 				$(".questions-right.single").append($(this).clone());
 				$(this).remove();
 			});
 			$(document).on('dblclick', ".questions-right.single li", function() {
+				var num = +$("#single-selected-num").html();
+				if (num >= <%=pager.singles.length%>) {
+					alert('请先移除左边一些题目再选择');
+					return;
+				}
+				$("#single-selected-num").html(num+1);
 				$(".questions-left.single").append($(this).clone());
 				$(this).remove();
 			});
 
 			$(document).on('dblclick', ".questions-left.multiple li", function() {
+				var num = +$("#multiple-selected-num").html();
+				$("#multiple-selected-num").html(num-1);
 				$(".questions-right.multiple").append($(this).clone());
 				$(this).remove();
 			});
 			$(document).on('dblclick', ".questions-right.multiple li", function() {
+				var num = +$("#multiple-selected-num").html();
+				if (num >= <%=pager.multiples.length%>) {
+					alert('请先移除左边一些题目再选择');
+					return;
+				}
+				$("#multiple-selected-num").html(num+1);
 				$(".questions-left.multiple").append($(this).clone());
 				$(this).remove();
 			});
 
 			$(document).on('dblclick', ".questions-left.judge li", function() {
+				var num = +$("#judge-selected-num").html();
+				$("#judge-selected-num").html(num-1);
 				$(".questions-right.judge").append($(this).clone());
 				$(this).remove();
 			});
 			$(document).on('dblclick', ".questions-right.judge li", function() {
-				$(".questions-left.judge").append($(this).clone());
+				var num = +$("#judge-selected-num").html();
+				if (num >= <%=pager.judges.length%>) {
+					alert('请先移除左边一些题目再选择');
+					return;
+				}
+				$("#judge-selected-num").html(num+1);
+				$(".judges-left.judge").append($(this).clone());
 				$(this).remove();
 			});
 
 			$(document).on('dblclick', ".questions-left.fill li", function() {
+				var num = +$("#fill-selected-num").html();
+				$("#fill-selected-num").html(num-1);
 				$(".questions-right.fill").append($(this).clone());
 				$(this).remove();
 			});
 			$(document).on('dblclick', ".questions-right.fill li", function() {
+				var num = +$("#fill-selected-num").html();
+				if (num >= <%=pager.fills.length%>) {
+					alert('请先移除左边一些题目再选择');
+					return;
+				}
+				$("#fill-selected-num").html(num+1);
 				$(".questions-left.fill").append($(this).clone());
 				$(this).remove();
+			});
+			$('.next').click(function() {
+				var singleIds 	= [];
+				var multipleIds = [];
+				var fillIds 	= [];
+				var judgeIds	= [];
+				$(".questions-left.single li a").each(function() {
+					singleIds.push($(this).data('id'));
+				});
+				$(".questions-left.multiple li a").each(function() {
+					multipleIds.push($(this).data('id'));
+				});
+				$(".questions-left.fill li a").each(function() {
+					fillIds.push($(this).data('id'));
+				});
+				$(".questions-left.judge li a").each(function() {
+					judgeIds.push($(this).data('id'));
+				});
+				/*
+				console.log(singleIds);
+				console.log(multipleIds);
+				console.log(fillIds);
+				console.log(judgeIds);
+				*/
+				$.post('/generatePager2.json', {
+					singleIds: 		singleIds,
+					multipleIds: 	multipleIds,
+					judgeIds: 		judgeIds,
+					fillIds: 		fillIds
+				}, function(res) {
+					console.log('ok');
+				}, 'json');
 			});
 
 		</script>

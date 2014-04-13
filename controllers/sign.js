@@ -17,7 +17,7 @@ exports.login = function(req, res, next) {
 		res.render('sign/signin', {error: "信息不完整"});
 	}
 
-	User.getUserByLoginName(loginname, function(err, user) {
+	User.getUserById(loginname, role, function(err, user) {
 		console.log(user);
 		if (err) {
 			return next(err);
@@ -25,12 +25,12 @@ exports.login = function(req, res, next) {
 		if (!user) {
 			return res.render('sign/signin', {error: "这个用户不存在"});
 		}
-		if (user.role != role) {
-			return res.render('sign/signin', {error: "这个用户不存在"});
-		}
+
 		if (password != user.password) {
 			return res.render('sign/signin', {error: "密码错误"});
 		}
+		user.role = role;
+		user.password = "";
 		req.session.user = user;
 		res.locals.user = user;
 		var refer = req.session._loginReferer || 'index';
@@ -48,6 +48,18 @@ exports.signout = function (req, res, next) {
 // 修改密码
 exports.showChangePassword = function(req, res, next) {
 	res.render('sign/change-password');
+}
+
+exports.changePassword = function(req, res, next) {
+	var newPassword = req.body.newPassword;
+	console.log(newPassword);
+	var user = req.session.user;
+	User.changePassword(user.id, user.role, newPassword);
+	var msg = {
+		code: 0,
+		message: "修改密码成功"
+	};
+	res.end(JSON.stringify(msg));
 }
 
 /**

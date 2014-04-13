@@ -2,15 +2,27 @@
 	<head>
 		<title>试卷信息</title>
 		<% include ../inc.html%>
+		<script type="text/javascript" src="/libs/validator/validator.min.js"></script>
 		<style>
 		.content {
-			padding-bottom: 60px;
+			margin-bottom: 80px !important;
+			max-width:800px !important;
+			width: auto !important;
+			margin-left: auto !important;
+			margin-right: auto !important;
+		}
+
+		.help-block {
+			color: #ff0000;
+		}
+		hr {
+			margin-bottom:80px;
 		}
 		</style>
 	</head>
 	<body>
 		
-	<% include ../navbar.html%>
+	
 		<div class="relavtive content">
 			<h1>试卷信息</h1>
 			<hr>
@@ -18,16 +30,17 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="page-title">试卷名称</label>
-						<input type="text" id="page-title" class="form-control">
+						<input type="text" id="page-title" class="form-control" value="<%=pager.pagerTitle%>">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="">第几章</label><br>
-						<select class="selectpicker" data-width="300px" name="role">
-						  	<option value="1">第一章</option>
-						  	<option value="2">第二章</option>
-						  	<option value="3">第三章</option>
+						<select class="selectpicker" data-width="365px" name="role" id="select-chapter">
+						  	<%for (var i = 0; i < chapters.length; i++) {%>
+						  		<option value="<%=chapters[i].chapter_id%>">第<%=i+1%>章 <%=chapters[i].title%></option>
+						  	<%}%>
 						</select>
 					</div>
 				</div>
@@ -36,13 +49,15 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="signle-num">单选题数目</label>
-						<input type="text" id="single-num" class="form-control">
+						<input type="text" id="single-num" class="form-control" value="<%=pager.singleNum%>">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="multiple-num">多选题数目</label>
-						<input type="text" id="multiple-num" class="form-control">
+						<input type="text" id="multiple-num" class="form-control" value="<%=pager.multipleNum%>">
+						<span class="help-block"></span>
 					</div>
 				</div>
 			</div>
@@ -50,22 +65,84 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="judge-num">判断题数目</label>
-						<input type="text" id="judge-num" class="form-control">
+						<input type="text" id="judge-num" class="form-control" value="<%=pager.judgeNum%>">
+						<span class="help-block"></span>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="fill-num">填空题数目</label>
-						<input type="text" id="fill-num" class="form-control">
+						<input type="text" id="fill-num" class="form-control" value="<%=pager.fillNum%>">
+						<span class="help-block"></span>
 					</div>
 				</div>
 			</div>
 		</div>
 		<% include steps.html%>
+		<% include ../navbar.html%>
 	</body>
 	<script>
 		$(document).ready(function() {
 			$('.selectpicker').selectpicker();
+			$(".next").click(function() {
+				$(".help-block").html('');
+				var pagerTitle 			= $("#page-title").val().trim();
+				var singleNum 			= $("#single-num").val().trim();
+				var multipleNum 		= $("#multiple-num").val().trim();
+				var judgeNum 			= $("#judge-num").val().trim();
+				var fillNum 			= $("#fill-num").val().trim();
+				var chapterId 			= $("#select-chapter").val();
+				if (!pagerTitle) {
+					$("#page-title").next().html("试卷名不能为空");
+					return;
+				}
+
+				if (!singleNum) {
+					$("#single-num").next().html("题数不能为空");
+					return;
+				} else if (!validator.isNumeric(singleNum)) {
+					$("#single-num").next().html("只能是数字");
+					return;
+				}
+
+				if (!multipleNum) {
+					$("#multiple-num").next().html("题数不能为空");
+					return;
+				} else if (!validator.isNumeric(multipleNum)) {
+					$("#multiple-num").next().html("只能是数字");
+					return;
+				}
+
+				if (!judgeNum) {
+					$("#judge-num").next().html("题数不能为空");
+					return;
+				} else if (!validator.isNumeric(judgeNum)) {
+					$("#judgeNum").next().html("只能是数字");
+					return;
+				}
+
+				if (!fillNum) {
+					$("#fill-num").next().html("题数不能为空");
+				} else if (!validator.isNumeric(fillNum)) {
+					$("#fill-num").next().html("只能是数字");
+				}
+
+				// 提交数据
+				$.post('/generatePager1.json', {
+					pagerTitle: 	pagerTitle,
+					singleNum: 		singleNum,
+					multipleNum: 	multipleNum,
+					judgeNum: 		judgeNum,
+					fillNum: 		fillNum,
+					chapterId: 		chapterId
+				}, function(res) {
+					console.log(res["code"]);
+					if (res.code == 0) {
+						console.log(res.message);
+						location.href = "<%=nextUrl%>";
+					}
+				}, 'json');
+			});
 		});
 	</script>
 </html>

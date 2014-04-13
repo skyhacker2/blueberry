@@ -63,5 +63,5 @@ $(document).ready(function() {
 		$('.main-menu li').removeClass('active');
 	});
 
-	$('.app-bar .handler').click();
+	//$('.app-bar .handler').click();
 });

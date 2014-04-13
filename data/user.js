@@ -1,28 +1,42 @@
+var connection = require('./connection');
 
-var users = [
-	{ _id: 0, loginname: "admin", password: 123456, role: "teacher"},
-	{ _id: 1, loginname: "eleven", password: 123456, role: "student"}
-];
 
-// 通过登陆名查找用户
-exports.getUserByLoginName = function(loginname, callback) {
-	for (var i = 0; i < users.length; i++) {
-		var user = users[i];
-		if (user.loginname == loginname) {
-			return callback(null, user);
-		}
-	}
-	callback(null, null);
-}
 
 // 通过id查找用户
-exports.getUserById = function(id, callback) {
-	for (var i = 0; i < users.length; i++) {
-		var user = users[i];
-		if (user._id == id) {
-			return callback(null, user);
-		}
+exports.getUserById = function(id, role, callback) {
+	if (role == 'teacher') {
+		connection.query("SELECT * FROM question.teacher WHERE teacher_id=?", [id], function(err, rows) {
+			if(rows.length > 0) {
+				var user = rows[0];
+				user.role = role;
+				user.name = rows[0].teacher_name;
+				user.id = rows[0].teacher_id;
+				callback(err, user);
+			} else {
+				callback(err, null);
+			}
+		});
+	} else {
+		var query = connection.query("SELECT * FROM question.student WHERE student_id=?", [id], function(err, rows) {
+			if(rows.length > 0) {
+				var user = rows[0];
+				user.role = role;
+				user.name = rows[0].student_name;
+				user.id = rows[0].student_id;
+				callback(err, user);
+			} else {
+				callback(err, null);
+			}
+		});
 	}
-	callback(null, null);
+}
+
+// 修改密码
+exports.changePassword = function(id, role, newPassword, callback) {
+	if (role == 'teacher') {
+		connection.query("UPDATE question.teacher SET password = ? WHERE teacher_id = ?", [newPassword, id]);
+	} else {
+		connection.query("UPDATE question.student SET password = ? WHERE student_id = ?", [newPassword, id]);
+	}
 }
 
