@@ -24,3 +24,27 @@ exports.getAllExcept = function(chapter_id, excepts, callback) {
 		}
 	});
 }
+
+exports.getByIds = function(chapter_id, ids, callback) {
+	var queryStr = "SELECT * FROM question.fill WHERE chapter_id = " + chapter_id + " AND ";
+	for (var i = 0; i < ids.length-1; i++) {
+		queryStr += "question_id = " + ids[i] + " OR ";
+	}
+	queryStr += "question_id = " + ids[ids.length-1];
+	connection.query(queryStr, function(err, rows) {
+		if (err) {
+			console.log(err);
+		} else {
+			// 排序
+			var results = [];
+			for (var i = 0; i < ids.length; i++) {
+				for (var j = 0; j < rows.length; j++) {
+					if (rows[j].question_id == ids[i]) {
+						results[i] = rows[j];
+					}
+				}
+			}
+			callback(results);
+		}
+	})
+}

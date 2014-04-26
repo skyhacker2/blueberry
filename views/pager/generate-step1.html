@@ -55,8 +55,24 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
+						<label for="single-grade">每道单选题分数</label>
+						<input type="text" id="single-grade" class="form-control" value="<%=pager.singleGrade%>">
+						<span class="help-block"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
 						<label for="multiple-num">多选题数目</label>
 						<input type="text" id="multiple-num" class="form-control" value="<%=pager.multipleNum%>">
+						<span class="help-block"></span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="mulitiple-grade">每道多选题分数</label>
+						<input type="text" id="mulitiple-grade" class="form-control" value="<%=pager.multipleGrade%>">
 						<span class="help-block"></span>
 					</div>
 				</div>
@@ -71,12 +87,29 @@
 				</div>
 				<div class="col-md-6">
 					<div class="form-group">
+						<label for="judge-grade">每道判断分数</label>
+						<input type="text" id="judge-grade" class="form-control" value="<%=pager.judgeGrade%>">
+						<span class="help-block"></span>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
 						<label for="fill-num">填空题数目</label>
 						<input type="text" id="fill-num" class="form-control" value="<%=pager.fillNum%>">
 						<span class="help-block"></span>
 					</div>
 				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="fill-grade">每道填空题分数</label>
+						<input type="text" id="fill-grade" class="form-control" value="<%=pager.fillGrade%>">
+						<span class="help-block"></span>
+					</div>
+				</div>
 			</div>
+			<h4 class="grade">总分</h4>
 		</div>
 		<% include steps.html%>
 		<% include ../navbar.html%>
@@ -91,6 +124,10 @@
 				var multipleNum 		= $("#multiple-num").val().trim();
 				var judgeNum 			= $("#judge-num").val().trim();
 				var fillNum 			= $("#fill-num").val().trim();
+				var singleGrade 		= $("#single-grade").val().trim();
+				var multipleGrade 		= $("#mulitiple-grade").val().trim();
+				var judgeGrade 			= $("#judge-grade").val().trim();
+				var fillGrade 			= $("#fill-grade").val().trim();
 				var chapterId 			= $("#select-chapter").val();
 				if (!pagerTitle) {
 					$("#page-title").next().html("试卷名不能为空");
@@ -123,8 +160,10 @@
 
 				if (!fillNum) {
 					$("#fill-num").next().html("题数不能为空");
+					return;
 				} else if (!validator.isNumeric(fillNum)) {
 					$("#fill-num").next().html("只能是数字");
+					return;
 				}
 
 				// 提交数据
@@ -134,7 +173,11 @@
 					multipleNum: 	multipleNum,
 					judgeNum: 		judgeNum,
 					fillNum: 		fillNum,
-					chapterId: 		chapterId
+					chapterId: 		chapterId,
+					singleGrade: 	singleGrade,
+					multipleGrade: 	multipleGrade,
+					judgeGrade: 	judgeGrade,
+					fillGrade: 		fillGrade
 				}, function(res) {
 					console.log(res["code"]);
 					if (res.code == 0) {
@@ -143,6 +186,21 @@
 					}
 				}, 'json');
 			});
+			$('input').keyup(function() {
+				var singleNum 			= $("#single-num").val().trim();
+				var multipleNum 		= $("#multiple-num").val().trim();
+				var judgeNum 			= $("#judge-num").val().trim();
+				var fillNum 			= $("#fill-num").val().trim();
+				var singleGrade 		= $("#single-grade").val().trim();
+				var multipleGrade 		= $("#mulitiple-grade").val().trim();
+				var judgeGrade 			= $("#judge-grade").val().trim();
+				var fillGrade 			= $("#fill-grade").val().trim();
+
+				var countGrade = singleNum * singleGrade + multipleNum * multipleGrade + fillNum * fillGrade + judgeNum * judgeNum;
+				$('.grade').html('总分: ' + countGrade);
+			});
+			$('#single-num').keyup();
+			
 		});
 	</script>
 </html>

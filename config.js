@@ -20,6 +20,10 @@ module.exports = {
     multiple_num: 5, // 多选题数量
     fill_num: 5,     // 填空题数量
     judge_num: 5,    // 判断题数量
-    answer_question_num: 5 // 解答题数量
+    answer_question_num: 5, // 解答题数量
+    single_grade: 1,
+    multiple_grade: 3,
+    fill_grade: 5,
+    judge_grade: 1
 
 };

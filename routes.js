@@ -25,4 +25,6 @@ module.exports = function(app) {
 	app.get('/generatePager3', pager.showGeneratePager3);
 	app.post('/generatePager1.json', pager.generatePager1); // 试卷头
 	app.post('/generatePager2.json', pager.generatePager2); // 保存试卷
+	app.post('/generatePager3.json', pager.generatePager3);
+	app.get('/generateFinish', pager.showGenerateFinish);
 };

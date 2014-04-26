@@ -9,104 +9,177 @@
 			.form-testing {
 				margin-bottom: 50px;
 			}
-			.last {
-				margin-bottom: 80px;
+			.question-topic {
+				font-weight: bold;
+			}
+			.input-group {
+				margin-bottom: 10px;
+			}
+			.answer {
+				display: none;
+				color: #ff0000;
+			}
+			.clock-panel {
+				position: fixed;
+				width:300px;
+				top: -1px;
+				left:50%;
+				margin-left: -150px;
+				border: 1px solid #d4d4d4;
+				border-bottom-left-radius: 2px;
+				border-bottom-right-radius: 2px;
+				padding-left: 10px;
+				padding-right: 10px;
+				padding-top: 10px;
+				z-index: 999;
+				background-color: rgba(255,255,255,0.7);
+				text-align: center;
+			}
+			.content {
+				max-width:800px !important;
+				width: auto !important;
+				margin-left: auto !important;
+				margin-right: auto !important;
+				padding-bottom: 50px;
+			}
+			hr {
+				margin-bottom: 30px;
+
+			}
+			h4 {
+				color: #d9534f;
+				margin-bottom: 0px;
+				margin-top: 50px;
+				margin-bottom: 20px;
+				font-weight: bold;
 			}
 		</style>
 	</head>
 	<body>
-		<% include ../navbar.html%>
-		<div class="relavtive content padding-bottom">
-			<h1>第一章 考试标题</h1>
-			<div class="panel panel-default">
-			  	<div class="panel-heading">单选题</div>
-			  	<div class="panel-body">
-			  		<p>1. 题目一</p>
-			  		<div class="answer-field">
-				  		<div class="radio">
-					  		<label>
-							  	<input type="radio" name="topic1" value="option1"> 选项1
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-							  <input type="radio" name="topic1" value="option2"> 选项2
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-							  <input type="radio" name="topic1" value="option3"> 选项3
-							</label>
-						</div>
-					</div>
-			  	</div>
-			</div>
+		
+		<div class="relavtive content">
+			<h1>试卷预览</h1>
+			<hr>
+			<form class="form-testing" action="/online_testing" method="POST">
 
-			<div class="panel panel-default">
-			  	<div class="panel-heading">多选题</div>
-			  	<div class="panel-body">
-			  		<p>1. 题目一</p>
-			  		<div class="answer-field">
-			  			<div class="checkbox">
-					  		<label>
-							  	<input type="checkbox" name="topic1" value="option1"> 选项1
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox" name="topic1" value="option2"> 选项2
-							</label>
-						</div>
-						<div class="checkbox">
-							<label>
-							  <input type="checkbox" name="topic1" value="option3"> 选项3
-							</label>
-						</div>
-					</div>
-			  	</div>
-			</div>
-
-			<div class="panel panel-default">
-			  	<div class="panel-heading">判断题</div>
-			  	<div class="panel-body">
-			  		<p>1. 题目一</p>
-			  		<div class="answer-field">
-			  			<div class="radio">
-					  		<label>
-							  	<input type="radio" name="topic1" value="option1"> 对
-							</label>
-						</div>
-						<div class="radio">
-							<label>
-							  <input type="radio" name="topic1" value="option2"> 错
-							</label>
-						</div>
-					</div>
-			  	</div>
-			</div>
-
-			<div class="panel panel-default last">
-			  	<div class="panel-heading">填空题</div>
-			  	<div class="panel-body">
-			  		<p>1. 在这里填___才正确, 第二个空___</p>
-			  		<div class="answer-field row">
-			  			<div class="col-md-6">
-				  			<div class="input-group">
-							  	<span class="input-group-addon">(1)</span>
-							  	<input type="text" class="form-control">
+			  	<h4>单选题（共<%=pager._singles.length%>题）</h4>
+			  	<div >
+			  		<%for(var i = 0; i < pager._singles.length; i++) {%>
+				  		<p class="question-topic"><%=i+1%>. <%=pager._singles[i].topic%></p>
+				  		<div class="answer-field">
+					  		<div class="radio">
+						  		<label>
+								  	<input type="radio" name="single-<%=pager._singles[i].question_id%>" value="A"> <%=pager._singles[i].optionA%>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="B"> <%=pager._singles[i].optionB%>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="C"> <%=pager._singles[i].optionC%>
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="D"> <%=pager._singles[i].optionD%>
+								</label>
 							</div>
 						</div>
-						<div class="col-md-6">
-							<div class="input-group">
-							  	<span class="input-group-addon">(2)</span>
-							  	<input type="text" class="form-control">
+						<p class="answer">参考答案: <%=pager._singles[i].answer%></p>
+					<%}%>
+			  	</div>
+
+
+			  	<h4>多选题（共<%=pager._multiples.length%>题）</h4>
+			  	<div>
+			  		<% for(var i = 0; i < pager._multiples.length; i++) {%> 
+			  			<%var multiple = pager._multiples[i];%>
+				  		<p class="question-topic"><%=i+1%>. <%=multiple.topic%></p>
+				  		<div class="answer-field">
+				  			<div class="checkbox">
+						  		<label>
+								  	<input type="checkbox" name="<%=multiple.question_id%>" value="option1"> <%=multiple.optionA%>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+								  <input type="checkbox" name="<%=multiple.question_id%>" value="option2"> <%=multiple.optionB%>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+								  <input type="checkbox" name="<%=multiple.question_id%>" value="option3"> <%=multiple.optionC%>
+								</label>
+							</div>
+							<div class="checkbox">
+								<label>
+								  <input type="checkbox" name="<%=multiple.question_id%>" value="option4"> <%=multiple.optionD%>
+								</label>
 							</div>
 						</div>
-			  		</div>
+						<p class="answer">参考答案: <%=multiple.answer%></p>
+					<%}%>
 			  	</div>
-			</div>
 
+
+			  	<h4>判断题（共<%=pager._judges.length%>题）</h4>
+			  	<div>
+			  		<%for(var i = 0; i < pager._judges.length; i++) {%>
+			  		<% var judge = pager._judges[i];%>
+				  		<p class="question-topic"><%=i+1%>. <%=judge.topic%></p>
+				  		<div class="answer-field">
+				  			<div class="radio">
+						  		<label>
+								  	<input type="radio" name="<%=judge.question_id%>" value="0"> 对
+								</label>
+							</div>
+							<div class="radio">
+								<label>
+								  <input type="radio" name="<%=judge.question_id%>" value="1"> 错
+								</label>
+							</div>
+						</div>
+						<p class="answer">参考答案: <%=judge.answer%></p>
+					<%}%>
+			  	</div>
+
+
+			  	<h4>填空题（共<%=pager._fills.length%>题）</h4>
+			  	<div>
+			  		<%for(var i = 0; i < pager._fills.length; i++) {%> 
+			  		<%var fill = pager._fills[i];%>
+				  		<p class="question-topic"><%=i+1%>. <%=fill.topic%></p>
+				  		<div class="row">
+				  		<%for(var j = 1; j <= fill.fillCount; j+=1) {%>
+				  			<div class="col-md-6">
+					  			<div class="input-group" >
+								  	<span class="input-group-addon">(<%=j%>)</span>
+								  	<input type="text" class="form-control">
+								</div>
+							</div>
+				  		<%}%>
+				  		</div>
+				  		<p class="answer">参考答案: <%=fill.answer%></p>
+			  		<%}%>
+			  	</div>
+
+			</form>
+			<hr>
+			<% include steps.html%>
 		</div>
-		<% include steps.html%>
+		<% include ../navbar.html%>
+		<script type="text/javascript">
+			$('.next').click(function() {
+				$.post('/generatePager3.json', {}, function(res) {
+					if (res.code == 0) {
+						console.log(res.message);
+						location.href = "<%=nextUrl%>";
+					}
+				}, 'json');
+			});
+		</script>
 	</body>
 </html>

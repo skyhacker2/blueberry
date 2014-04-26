@@ -54,7 +54,7 @@
 
 	</style>
 	<body>
-		<% include ../navbar.html%>
+		
 		<div class="relavtive content">
 			<h1>选择试题</h1>
 			<hr>
@@ -62,14 +62,14 @@
 				<h2>单选题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.singleNum%>题, 已经选择: <span id="single-selected-num"><%=pager.singleNum%></span>题</p>
+					<p>你设置了: <%=pager.singleNum%>题, 已经选择: <span id="single-selected-num"><%=pager.singles.length%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 
 						<div class="select-box">
 							<ul class="questions questions-left single">
-								<%for(var i = 0; i < pager.singleNum; i++) {%>
+								<%for(var i = 0; i < pager.singles.length; i++) {%>
 									<li>
 										<a class="parent" href="javascript:void(0);" data-id="<%=pager.singles[i].question_id%>"><%=pager.singles[i].topic%></a>
 									</li>
@@ -96,13 +96,13 @@
 				<h2>多选题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.multipleNum%>题, 已经选择: <span id="multiple-selected-num"><%=pager.multipleNum%></span>题</p>
+					<p>你设置了: <%=pager.multipleNum%>题, 已经选择: <span id="multiple-selected-num"><%=pager.multiples.length%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-left multiple">
-								<%for(var i = 0; i < pager.multipleNum; i++) {%>
+								<%for(var i = 0; i < pager.multiples.length; i++) {%>
 									<li>
 										<a class="parent" href="javascript:void(0);" data-id="<%=pager.multiples[i].question_id%>"><%=pager.multiples[i].topic%></a>
 									</li>
@@ -128,13 +128,13 @@
 				<h2>判断题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.judgeNum%>题, 已经选择: <span id="judge-selected-num"><%=pager.judgeNum%></span>题</p>
+					<p>你设置了: <%=pager.judgeNum%>题, 已经选择: <span id="judge-selected-num"><%=pager.judges.length%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-left judge">
-								<%for(var i = 0; i < pager.judgeNum; i++) {%>
+								<%for(var i = 0; i < pager.judges.length; i++) {%>
 									<li>
 										<a class="parent" href="javascript:void(0);" data-id="<%=pager.judges[i].question_id%>"><%=pager.judges[i].topic%></a>
 									</li>
@@ -161,13 +161,13 @@
 				<h2>填空题</h2>
 				<div>
 					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.fillNum%>题, 已经选择: <span id="fill-selected-num"><%=pager.fillNum%></span>题</p>
+					<p>你设置了: <%=pager.fillNum%>题, 已经选择: <span id="fill-selected-num"><%=pager.fills.length%></span>题</p>
 				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="select-box">
 							<ul class="questions questions-left fill">
-								<%for(var i = 0; i < pager.fillNum; i++) {%>
+								<%for(var i = 0; i < pager.fills.length; i++) {%>
 									<li>
 										<a class="parent" href="javascript:void(0);" data-id="<%=pager.fills[i].question_id%>"><%=pager.fills[i].topic%></a>
 									</li>
@@ -190,6 +190,7 @@
 			</div>
 			<% include steps.html%>
 		</div>
+		<% include ../navbar.html%>
 		<script>
 			$(document).on('dblclick', ".questions-left.single li", function() {
 				var num = +$("#single-selected-num").html();
@@ -287,10 +288,14 @@
 					judgeIds: 		judgeIds,
 					fillIds: 		fillIds
 				}, function(res) {
-					console.log('ok');
+					if (res.code == 0) {
+						console.log(res.message);
+						location.href = "<%=nextUrl%>";
+					}
 				}, 'json');
 			});
 
 		</script>
+
 	</body>
 </html>

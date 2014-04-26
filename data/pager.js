@@ -82,12 +82,41 @@ Pager.save = function(pager, callback ) {
 	var fillIdsStr 		= pager.fillIds.join(',');
 	var now 			= dateFormat('yyyy-MM-dd hh:mm:ss');
 
-	var result = connection.query("INSERT INTO blueberry.pager (singles, multiples, judges, fills, chapter_id, title, create_time) VALUES(?, ?, ?, ?, ?, ?, ?)", [singleIdsStr, multipleIdsStr, judgeIdsStr, fillIdsStr, pager.chapterId, pager.pagerTitle, now], function(err, rows) {
+	var result = connection.query("INSERT INTO blueberry.pager (singles, multiples, judges, fills, chapter_id, title, create_time, single_grade, multiple_grade, judge_grade, fill_grade) \
+					VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+					, [singleIdsStr, multipleIdsStr, judgeIdsStr, fillIdsStr, pager.chapterId, pager.pagerTitle, now, pager.singleGrade, pager.multipleGrade, pager.judgeGrade, pager.fillGrade], function(err, rows) {
 		if (err) {
 			console.log(err);
 		} else {
 			callback();
 		}
+	});
+}
+
+Pager.getByIds = function(pager, callback) {
+	var ep = EventProxy.create('singles', 'multiples', 'judges', 'fills', 
+		function(singles, multiples, judges, fills) {
+			pager._singles 		= singles;
+			pager._multiples 	= multiples;
+			pager._judges 		= judges;
+			pager._fills 		= fills;
+			callback(pager);
+	});
+
+	Single.getByIds(pager.chapterId, pager.singleIds, function(singles) {
+		ep.emit('singles', singles);
+	});
+
+	Multiple.getByIds(pager.chapterId, pager.multipleIds, function(multiples) {
+		ep.emit('multiples', multiples);
+	});
+
+	Judge.getByIds(pager.chapterId, pager.judgeIds, function(judges) {
+		ep.emit('judges', judges);
+	});
+
+	Fill.getByIds(pager.chapterId, pager.fillIds, function(fills) {
+		ep.emit('fills', fills);
 	});
 }
 
