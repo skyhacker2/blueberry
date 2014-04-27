@@ -76,15 +76,15 @@ Pager.getAllQuestionExcept = function(pager, callback) {
 }
 
 Pager.save = function(pager, callback ) {
-	var singleIdsStr 	= pager.singleIds.join(',');
-	var multipleIdsStr 	= pager.multipleIds.join(',');
-	var judgeIdsStr 	= pager.judgeIds.join(',');
-	var fillIdsStr 		= pager.fillIds.join(',');
+	var singleIdsStr 	= pager.singleIds.join('-');
+	var multipleIdsStr 	= pager.multipleIds.join('-');
+	var judgeIdsStr 	= pager.judgeIds.join('-');
+	var fillIdsStr 		= pager.fillIds.join('-');
 	var now 			= dateFormat('yyyy-MM-dd hh:mm:ss');
 
-	var result = connection.query("INSERT INTO blueberry.pager (singles, multiples, judges, fills, chapter_id, title, create_time, single_grade, multiple_grade, judge_grade, fill_grade) \
-					VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
-					, [singleIdsStr, multipleIdsStr, judgeIdsStr, fillIdsStr, pager.chapterId, pager.pagerTitle, now, pager.singleGrade, pager.multipleGrade, pager.judgeGrade, pager.fillGrade], function(err, rows) {
+	var result = connection.query("INSERT INTO blueberry.pager (singles, multiples, judges, fills, chapter_id, title, create_time, single_grade, multiple_grade, judge_grade, fill_grade, grade) \
+					VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+					, [singleIdsStr, multipleIdsStr, judgeIdsStr, fillIdsStr, pager.chapterId, pager.pagerTitle, now, pager.singleGrade, pager.multipleGrade, pager.judgeGrade, pager.fillGrade, pager.grade], function(err, rows) {
 		if (err) {
 			console.log(err);
 		} else {
@@ -117,6 +117,33 @@ Pager.getByIds = function(pager, callback) {
 
 	Fill.getByIds(pager.chapterId, pager.fillIds, function(fills) {
 		ep.emit('fills', fills);
+	});
+}
+
+/**
+获取全部试卷的列表
+**/
+Pager.getList = function(callback) {
+	connection.query("SELECT * FROM blueberry.pager", function(err, rows) {
+		if(err) {
+			console.log(err);
+		} else {
+			callback(rows);
+		}
+	});
+}
+
+Pager.getById = function(pagerId, callback) {
+	connection.query('SELECT * FROM blueberry.pager WHERE pager_id = ?', [pagerId], function(err, rows) {
+		var pager = rows[0];
+		pager.singleIds = pager.singles.split('-');
+		pager.multipleIds = pager.multiples.split('-');
+		pager.judgeIds = pager.judges.split('-');
+		pager.fillIds = pager.fills.split('-');
+		pager.chapterId = pager.chapter_id;
+		Pager.getByIds(pager, function(pager) {
+			callback(pager);
+		});
 	});
 }
 

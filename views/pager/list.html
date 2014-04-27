@@ -1,0 +1,47 @@
+<html>
+	<head>
+		<title>试卷列表</title>
+		<% include ../inc.html%>
+	</head>
+	<body>
+		<div class="content">
+			<h1>试卷列表</h1>
+			<hr>
+			<table class="table table-bordered">
+  			<thead>
+			  	<tr>
+			  		<th>试卷号</th>
+			  		<th>标题</th>
+			  		<th>单选题</th>
+			  		<th>多选题</th>
+			  		<th>判断题</th>
+			  		<th>填空题</th>
+			  		<th>生成时间</th>
+			  		<th>试卷总分</th>
+			  	</tr>
+			  </thead>
+			  <tbody>
+					<%for(var i = 0; i < pagerList.length; i++) {%>
+						<tr>
+							<td><%=pagerList[i].pager_id%></td>
+							<td><a href="/pagers/<%=pagerList[i].pager_id%>"><%=pagerList[i].title%></a></td>
+							<td>共<%=pagerList[i].singleNum%>题 (共<%=pagerList[i].singleNum * pagerList[i].single_grade%>分)</td>
+							<td>共<%=pagerList[i].multipleNum%>题 (共<%=pagerList[i].multipleNum * pagerList[i].multiple_grade%>分)</td>
+							<td>共<%=pagerList[i].judgeNum%>题 (共<%=pagerList[i].judgeNum * pagerList[i].judge_grade%>分)</td>
+							<td>共<%=pagerList[i].fillNum%>题 (共<%=pagerList[i].fillNum * pagerList[i].fill_grade%>分)</td>
+							<td><%=pagerList[i].create_time%></td>
+							<td><%=pagerList[i].grade%></td>
+						</tr>
+					<%}%>
+			  </tbody>
+		</table>
+		</div>
+		<% include ../navbar.html%>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				Navbar.activeItem('#online-examination');
+			});
+			
+		</script>
+	</body>
+</html>

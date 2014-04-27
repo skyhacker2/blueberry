@@ -109,7 +109,7 @@
 					</div>
 				</div>
 			</div>
-			<h4 class="grade">总分</h4>
+			<h4>总分<span class="grade"></span></h4>
 		</div>
 		<% include steps.html%>
 		<% include ../navbar.html%>
@@ -129,6 +129,7 @@
 				var judgeGrade 			= $("#judge-grade").val().trim();
 				var fillGrade 			= $("#fill-grade").val().trim();
 				var chapterId 			= $("#select-chapter").val();
+				var grade 				= $('.grade').text();
 				if (!pagerTitle) {
 					$("#page-title").next().html("试卷名不能为空");
 					return;
@@ -177,7 +178,8 @@
 					singleGrade: 	singleGrade,
 					multipleGrade: 	multipleGrade,
 					judgeGrade: 	judgeGrade,
-					fillGrade: 		fillGrade
+					fillGrade: 		fillGrade,
+					grade: 			grade
 				}, function(res) {
 					console.log(res["code"]);
 					if (res.code == 0) {
@@ -196,11 +198,12 @@
 				var judgeGrade 			= $("#judge-grade").val().trim();
 				var fillGrade 			= $("#fill-grade").val().trim();
 
-				var countGrade = singleNum * singleGrade + multipleNum * multipleGrade + fillNum * fillGrade + judgeNum * judgeNum;
-				$('.grade').html('总分: ' + countGrade);
+
+				var countGrade = (singleNum * singleGrade) + (multipleNum * multipleGrade) + (fillNum * fillGrade) + (judgeNum * judgeGrade);
+				$('.grade').html(countGrade);
 			});
 			$('#single-num').keyup();
-			
+			Navbar.activeItem('#generate-pager');
 		});
 	</script>
 </html>

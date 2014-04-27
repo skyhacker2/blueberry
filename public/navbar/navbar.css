@@ -81,6 +81,7 @@ body .content {
 	padding: 20px;
 	margin-right: 0px;
 	height: 100%;
+	position: relative;
 }
 body.long-menu .content {
 	margin-left: 220px;

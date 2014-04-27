@@ -50,36 +50,45 @@
 	.flag.readed {
 		background-color: #47a447;
 	}
+
 </style>
 <ul class="msgbox">
-	<li>
-		<div class="msgbox-panel">
-			<div class="flag"><i></i>New</div>
-			<div class="msg-heading">
-				<h4 class="msg-title">考试1</h4>
-				<p>
-					<small class="text-muted"><i class="fa fa-clock-o"></i>2014年3月18日</small>
-					<small class="text-muted"><i class="fa fa-user">何老师</i></small>
-				</p>
+	<%for(var i = 0; i < messages.length; i++) {%>
+		<li>
+			<div class="msgbox-panel">
+				<div class="msg-heading">
+					<%if(user.role == 'teacher') {%>
+						<button class="btn btn-danger pull-right delete-msg" data-id="<%=messages[i].msg_id%>">删除</button>
+					<%}%>
+					<h4 class="msg-title"><%=messages[i].msg_title%></h4>
+					<p>
+						<small class="text-muted"><i class="fa fa-clock-o"></i><%=messages[i].create_time%></small>
+						<small class="text-muted"><i class="fa fa-user"><%=messages[i].author%></i></small>
+					</p>
+				</div>
+				<div class="msg-body">
+					<p><%=messages[i].msg_body%></p>
+				</div>
 			</div>
-			<div class="msg-body">
-				<p>请同学们在星期二前完成考试1.</p>
-			</div>
-		</div>
-	</li>
-	<li>
-		<div class="msgbox-panel">
-			<div class="flag readed"><i></i>Readed</div>
-			<div class="msg-heading">
-				<h4 class="msg-title">考试2</h4>
-				<p>
-					<small class="text-muted"><i class="fa fa-clock-o"></i>2014年3月10日</small>
-					<small class="text-muted"><i class="fa fa-user">何老师</i></small>
-				</p>
-			</div>
-			<div class="msg-body">
-				<p>请同学们在星期一前完成考试二.</p>
-			</div>
-		</div>
-	</li>
+		</li>
+	<%}%>
 </ul>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".delete-msg").click(function() {
+			if(confirm("确认删除？")) {
+				var id = $(this).data("id");
+				$.ajax({
+					url: '/message/' + id + ".json",
+					type: 'DELETE',
+					success: function(res) {
+						if(res.code == 0) {
+							location.href = '/';
+						}
+					},
+					dataType: 'json'
+				});
+			}
+		});
+	});
+</script>

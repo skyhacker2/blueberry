@@ -4,6 +4,15 @@
 		<% include inc.html%>
 		<script type="text/javascript" src="/libs/validator/validator.min.js"></script>
 		<style>
+			.msg-wrapper {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 400px;
+				width: 600px;
+				margin-left: -300px;
+				margin-top: -200px;
+			}
 			.fa-6 {
 				font-size: 300px;
 			}
@@ -15,19 +24,30 @@
 			.msg.body {
 				padding-top: 60px;
 			}
+			.fa-smile-o {
+				color: #5cb85c;
+			}
+			.fa-meh-o {
+				color: #ed9c28;
+			}
+			.fa-frown-o {
+				color: #d2322d;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="content">
-			<div class="msg">
-				<i class="fa fa-frown-o fa-6"></i>
-			</div>
-			
-			<div class="msg body">
-				<h1>错误</h1>
-				<h4><%=msg%></h4>
-				<p><span class="counter">5</span>秒后返回首页</p>
-				<a href="/">立即返回</a>
+			<div class="msg-wrapper">
+				<div class="msg">
+					<i class="fa fa-frown-o fa-6"></i>
+				</div>
+				
+				<div class="msg body">
+					<h1>错误</h1>
+					<h4><%=msg%></h4>
+					<p><span class="counter">5</span>秒后返回首页</p>
+					<a href="/">立即返回</a>
+				</div>
 			</div>
 		</div>
 		<% include navbar.html%>

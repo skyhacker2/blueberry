@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>考试成绩</title>
+		<% include ../inc.html%>
+		<style>
+			.fa-6 {
+				font-size: 300px;
+			}
+			.msg {
+				float: left;
+				margin-right: 50px;
+				height: 300px;
+			}
+			.msg.body {
+				padding-top: 60px;
+			}
+			.fa-smile-o {
+				color: #5cb85c;
+			}
+			.fa-meh-o {
+				color: #ed9c28;
+			}
+			.fa-frown-o {
+				color: #d2322d;
+			}
+			.msg-wrapper {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				height: 400px;
+				width: 600px;
+				margin-left: -300px;
+				margin-top: -200px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="msg-wrapper">
+				<div class="msg">
+					<%if(grade >= pager.grade-10) {%>
+						<i class="fa fa-smile-o fa-6"></i>
+					<%} else if(grade >= pager.grade-20){%>
+						<i class="fa fa-meh-o fa-6"></i>
+					<%} else {%>
+						<i class="fa fa-frown-o fa-6"></i>
+					<%}%>
+				</div>
+				
+				<div class="msg body">
+					<h1>考试结束</h1>
+					<h4>成绩: <%=grade%></h4>
+					<a href="/">返回首页</a>
+				</div>
+			</div>
+		</div>
+		<% include ../navbar.html%>
+	</body>
+</html>

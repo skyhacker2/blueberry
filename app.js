@@ -3,7 +3,9 @@ var express = require('express'),
 	path = require('path'),
 	config = require('./config'),
 	routes = require('./routes'),
-	Chapter = require('./data').Chapter;
+	Chapter = require('./data/chapter'),
+	Pager = require('./data/pager'),
+	EventProxy = require('eventproxy');
 
 var app = express();
 

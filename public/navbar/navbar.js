@@ -30,6 +30,7 @@ $(document).ready(function() {
 				$li.addClass('active');
 				$('#'+menuType).addClass('shown');
 			}
+			Navbar.activeItem(Navbar.curId);
 		}
 		
 	});
@@ -38,7 +39,14 @@ $(document).ready(function() {
 		$('.app-bar .sub-menu').removeClass('shown');
 		$(document.body).removeClass('sub-menu-shown');
 		$('.main-menu li').removeClass('active');
+		Navbar.activeItem(Navbar.curId);
 	});
 
 	//$('.app-bar .handler').click();
 });
+var Navbar = {};
+
+Navbar.activeItem = function(id) {
+	$(id).closest('li').addClass('active');
+	Navbar.curId = id;
+}

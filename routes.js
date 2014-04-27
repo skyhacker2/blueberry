@@ -1,7 +1,8 @@
 var site = require('./controllers/site'),
 	sign = require('./controllers/sign'),
 	online_testing = require('./controllers/online_testing'),
-	pager = require('./controllers/pager');
+	pager = require('./controllers/pager'),
+	message = require('./controllers/message');
 
 
 module.exports = function(app) {
@@ -27,4 +28,13 @@ module.exports = function(app) {
 	app.post('/generatePager2.json', pager.generatePager2); // 保存试卷
 	app.post('/generatePager3.json', pager.generatePager3);
 	app.get('/generateFinish', pager.showGenerateFinish);
+
+	// 消息
+	app.post('/message.json', message.newMessage);
+	app.delete('/message/:msgId.json', message.delete);
+
+	// 考试
+	app.get('/pagers', pager.showPagerList);
+	app.get('/pagers/:pagerId', pager.showPager);
+	app.post('/pagers/:pagerId', pager.checkPager);
 };
