@@ -2,7 +2,8 @@ var site = require('./controllers/site'),
 	sign = require('./controllers/sign'),
 	online_testing = require('./controllers/online_testing'),
 	pager = require('./controllers/pager'),
-	message = require('./controllers/message');
+	message = require('./controllers/message'),
+	exam = require('./controllers/exam');
 
 
 module.exports = function(app) {
@@ -37,4 +38,7 @@ module.exports = function(app) {
 	app.get('/pagers', pager.showPagerList);
 	app.get('/pagers/:pagerId', pager.showPager);
 	app.post('/pagers/:pagerId', pager.checkPager);
+
+	// 查成绩
+	app.get('/exams', exam.getExams);
 };

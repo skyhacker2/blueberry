@@ -15,10 +15,6 @@
 			.input-group {
 				margin-bottom: 10px;
 			}
-			.answer {
-				display: none;
-				color: #ff0000;
-			}
 			.clock-panel {
 				position: fixed;
 				width:300px;
@@ -35,13 +31,6 @@
 				background-color: rgba(255,255,255,0.7);
 				text-align: center;
 			}
-			.content {
-				max-width:800px !important;
-				width: auto !important;
-				margin-left: auto !important;
-				margin-right: auto !important;
-				padding-bottom: 50px;
-			}
 			hr {
 				margin-bottom: 30px;
 
@@ -52,118 +41,139 @@
 				margin-top: 50px;
 				margin-bottom: 20px;
 				font-weight: bold;
+				margin-bottom: 0px;
+				margin-top: 50px;
+				margin-bottom: 20px;
+				font-weight: bold;
+				background-color: #666;
+			    color: #fff;
+			    padding: 6px;
+			    box-shadow: 0px 2px 10px #888888;
+			}
+			.center {
+				position: absolute;
+				left: 50%;
+				height: auto;
+				width: 800px;
+				margin-left: -400px;
 			}
 		</style>
 	</head>
 	<body>
 		
 		<div class="relavtive content">
-			<h1><%=pager.title%></h1>
-			<hr>
-			<form class="form-testing" action="/pagers/<%=pager.pager_id%>" method="POST">
+			<div class="center">
+				<h1><%=pager.title%></h1>
+				<hr>
+				<form class="form-testing" action="/pagers/<%=pager.pager_id%>" method="POST">
 
-			  	<h4>单选题（共<%=pager._singles.length%>题）</h4>
-			  	<div >
-			  		<%for(var i = 0; i < pager._singles.length; i++) {%>
-				  		<p class="question-topic"><%=i+1%>. <%=pager._singles[i].topic%></p>
-				  		<div class="answer-field">
-					  		<div class="radio">
-						  		<label>
-								  	<input type="radio" name="single-<%=pager._singles[i].question_id%>" value="A"> <%=pager._singles[i].optionA%>
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-								  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="B"> <%=pager._singles[i].optionB%>
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-								  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="C"> <%=pager._singles[i].optionC%>
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-								  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="D"> <%=pager._singles[i].optionD%>
-								</label>
-							</div>
-						</div>
-					<%}%>
-			  	</div>
-
-
-			  	<h4>多选题（共<%=pager._multiples.length%>题）</h4>
-			  	<div>
-			  		<% for(var i = 0; i < pager._multiples.length; i++) {%> 
-			  			<%var multiple = pager._multiples[i];%>
-				  		<p class="question-topic"><%=i+1%>. <%=multiple.topic%></p>
-				  		<div class="answer-field">
-				  			<div class="checkbox">
-						  		<label>
-								  	<input type="checkbox" name="multiple-<%=multiple.question_id%>" value="A"> <%=multiple.optionA%>
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-								  <input type="checkbox" name="multiple-<%=multiple.question_id%>" value="B"> <%=multiple.optionB%>
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-								  <input type="checkbox" name="multiple-<%=multiple.question_id%>" value="C"> <%=multiple.optionC%>
-								</label>
-							</div>
-							<div class="checkbox">
-								<label>
-								  <input type="checkbox" name="multiple-<%=multiple.question_id%>" value="D"> <%=multiple.optionD%>
-								</label>
-							</div>
-						</div>
-					<%}%>
-			  	</div>
-
-
-			  	<h4>判断题（共<%=pager._judges.length%>题）</h4>
-			  	<div>
-			  		<%for(var i = 0; i < pager._judges.length; i++) {%>
-			  		<% var judge = pager._judges[i];%>
-				  		<p class="question-topic"><%=i+1%>. <%=judge.topic%></p>
-				  		<div class="answer-field">
-				  			<div class="radio">
-						  		<label>
-								  	<input type="radio" name="judge-<%=judge.question_id%>" value="0"> 对
-								</label>
-							</div>
-							<div class="radio">
-								<label>
-								  <input type="radio" name="judge-<%=judge.question_id%>" value="1"> 错
-								</label>
-							</div>
-						</div>
-					<%}%>
-			  	</div>
-
-
-			  	<h4>填空题（共<%=pager._fills.length%>题）</h4>
-			  	<div>
-			  		<%for(var i = 0; i < pager._fills.length; i++) {%> 
-			  		<%var fill = pager._fills[i];%>
-				  		<p class="question-topic"><%=i+1%>. <%=fill.topic%></p>
-				  		<div class="row">
-				  		<%for(var j = 1; j <= fill.fillCount; j+=1) {%>
-				  			<div class="col-md-6">
-					  			<div class="input-group" >
-								  	<span class="input-group-addon">(<%=j%>)</span>
-								  	<input type="text" class="form-control" name="fill-<%=pager._fills[i].question_id%>">
+				  	<h4>单选题（共<%=pager._singles.length%>题）</h4>
+				  	<div >
+				  		<%for(var i = 0; i < pager._singles.length; i++) {%>
+					  		<p class="question-topic"><%=i+1%>. <%=pager._singles[i].topic%></p>
+					  		<div class="answer-field">
+						  		<div class="radio">
+							  		<label>
+									  	<input type="radio" name="single-<%=pager._singles[i].question_id%>" value="A"> <%=pager._singles[i].optionA%>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+									  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="B"> <%=pager._singles[i].optionB%>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+									  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="C"> <%=pager._singles[i].optionC%>
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+									  <input type="radio" name="single-<%=pager._singles[i].question_id%>" value="D"> <%=pager._singles[i].optionD%>
+									</label>
 								</div>
 							</div>
+							<br/>
+						<%}%>
+				  	</div>
+
+
+				  	<h4>多选题（共<%=pager._multiples.length%>题）</h4>
+				  	<div>
+				  		<% for(var i = 0; i < pager._multiples.length; i++) {%> 
+				  			<%var multiple = pager._multiples[i];%>
+					  		<p class="question-topic"><%=i+1%>. <%=multiple.topic%></p>
+					  		<div class="answer-field">
+					  			<div class="checkbox">
+							  		<label>
+									  	<input type="checkbox" name="multiple-<%=multiple.question_id%>" value="A"> <%=multiple.optionA%>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									  <input type="checkbox" name="multiple-<%=multiple.question_id%>" value="B"> <%=multiple.optionB%>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									  <input type="checkbox" name="multiple-<%=multiple.question_id%>" value="C"> <%=multiple.optionC%>
+									</label>
+								</div>
+								<div class="checkbox">
+									<label>
+									  <input type="checkbox" name="multiple-<%=multiple.question_id%>" value="D"> <%=multiple.optionD%>
+									</label>
+								</div>
+							</div>
+							<br/>
+						<%}%>
+				  	</div>
+
+
+				  	<h4>判断题（共<%=pager._judges.length%>题）</h4>
+				  	<div>
+				  		<%for(var i = 0; i < pager._judges.length; i++) {%>
+				  		<% var judge = pager._judges[i];%>
+					  		<p class="question-topic"><%=i+1%>. <%=judge.topic%></p>
+					  		<div class="answer-field">
+					  			<div class="radio">
+							  		<label>
+									  	<input type="radio" name="judge-<%=judge.question_id%>" value="0"> 对
+									</label>
+								</div>
+								<div class="radio">
+									<label>
+									  <input type="radio" name="judge-<%=judge.question_id%>" value="1"> 错
+									</label>
+								</div>
+							</div>
+							<br/>
+						<%}%>
+				  	</div>
+
+
+				  	<h4>填空题（共<%=pager._fills.length%>题）</h4>
+				  	<div>
+				  		<%for(var i = 0; i < pager._fills.length; i++) {%> 
+				  		<%var fill = pager._fills[i];%>
+					  		<p class="question-topic"><%=i+1%>. <%=fill.topic%></p>
+					  		<div class="row">
+					  		<%for(var j = 1; j <= fill.fillCount; j+=1) {%>
+					  			<div class="col-md-6">
+						  			<div class="input-group" >
+									  	<span class="input-group-addon">(<%=j%>)</span>
+									  	<input type="text" class="form-control" name="fill-<%=pager._fills[i].question_id%>">
+									</div>
+								</div>
+					  		<%}%>
+					  		</div>
+					  		<br/>
 				  		<%}%>
-				  		</div>
-			  		<%}%>
-			  	</div>
-			  	<hr>
-				<button class="btn btn-lg btn-primary" type="submit">提交</button>
-			</form>
+				  	</div>
+				  	<hr>
+					<button class="btn btn-lg btn-primary" type="submit">提交</button>
+				</form>
+			</div>
 			
 			
 			<div class="clock-panel">

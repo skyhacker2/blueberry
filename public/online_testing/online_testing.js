@@ -1,6 +1,10 @@
 $(document).ready(function() {
 	$("#show-answer").click(function() {
-		$(".answer").toggle();
+		if($(".answer").css('visibility') == 'hidden') {
+			$(".answer").css('visibility', 'visible');
+		} else {
+			$(".answer").css('visibility', 'hidden');
+		}
 	});
 	// 时间倒数
 	var reciprocal = function() {

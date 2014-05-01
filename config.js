@@ -24,6 +24,9 @@ module.exports = {
     single_grade: 1,
     multiple_grade: 3,
     fill_grade: 5,
-    judge_grade: 1
+    judge_grade: 1,
+
+    // page size
+    page_size: 10
 
 };
