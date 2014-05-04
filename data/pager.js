@@ -147,4 +147,10 @@ Pager.getById = function(pagerId, callback) {
 	});
 }
 
+Pager.count = function(callback) {
+	connection.query('SELECT count(*) AS count FROM blueberry.pager', function(err, rows) {
+		callback(rows[0].count);
+	});
+}
+
 module.exports = Pager;

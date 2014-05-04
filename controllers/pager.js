@@ -250,7 +250,7 @@ exports.checkPager = function(req, res, next) {
 	}
 
 	var studentId = req.session.user.id;
-	Exam.add(pager, grade, studentId, function() {
+	Exam.add(pager, grade, pager.grade,  studentId, function() {
 		res.render('pager/exam-result.html', {grade: grade, pager: pager});
 	});
 }

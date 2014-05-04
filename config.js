@@ -27,6 +27,6 @@ module.exports = {
     judge_grade: 1,
 
     // page size
-    page_size: 10
+    page_size: 5
 
 };

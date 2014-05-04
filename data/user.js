@@ -1,4 +1,5 @@
-var connection = require('./connection');
+var connection = require('./connection'),
+	config = require('../config');
 
 
 
@@ -39,4 +40,26 @@ exports.changePassword = function(id, role, newPassword, callback) {
 		connection.query("UPDATE question.student SET password = ? WHERE student_id = ?", [newPassword, id]);
 	}
 }
+
+exports.getStudents = function(pageIndex, callback) {
+	var start = (pageIndex-1) * config.page_size;
+	var size = config.page_size;
+	connection.query('SELECT * FROM question.student LIMIT ?, ?', [start, size], function(err, rows) {
+		if (err) {
+			console.log(err);
+		} else {
+			callback(rows);
+		}
+	})
+}
+
+exports.countStudents = function(callback) {
+	connection.query('SELECT count(*) AS count FROM question.student', function(err, rows) {
+		if (err) {
+			console.log(err);
+		} else {
+			callback(rows[0].count);
+		}
+	})
+};
 

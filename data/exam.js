@@ -7,10 +7,10 @@ var connection = require('./connection'),
 
 var Exam = {};
 
-Exam.add = function(pager, grade, studentId, callback) {
+Exam.add = function(pager, grade, pagerGrade, studentId, callback) {
 	var now = dateFormat('yyyy-MM-dd hh:mm:ss');
-	connection.query("INSERT INTO blueberry.exam (pager_id, pager_title, create_time, exam_grade, student_id) \
-		VALUES(?, ?, ?, ?, ?)", [pager.pager_id, pager.title, now, grade, studentId], function(err) {
+	connection.query("INSERT INTO blueberry.exam (pager_id, pager_title, create_time, exam_grade, pager_grade, student_id) \
+		VALUES(?, ?, ?, ?, ?, ?)", [pager.pager_id, pager.title, now, grade, pagerGrade, studentId], function(err) {
 			if (err) {
 				console.log(err);
 			} else {
@@ -42,15 +42,77 @@ Exam.countByStudentId = function(studentId, callback) {
 	});
 }
 
-Exam.getAll = function(callback) {
-	connection.query('SELECT * FROM blueberry.exam', function(err, rows) {
-		for (var i = 0; i < rows.length; i++) {
-			Pager.getById(rows[i].pager_id, function(pager) {
-				rows[i].total_grade = pager.grade;
 
-			})
+Exam.getFullInfo = function(pageIndex, callback) {
+	User.getStudents(pageIndex, function(users) {
+		var infos = [];
+		var finishOne = function(info) {
+			infos.push(info);
+			if(infos.length == users.length) {
+				callback(infos);
+			}
+		}
+		for (var i = 0; i < users.length; i++) {
+			(function() {
+				var user = users[i];
+				connection.query('SELECT * FROM blueberry.exam WHERE student_id = ?',[user.student_id], function(err, exams) {
+					if (err) {
+						console.log(err);
+					} else {
+						user.exams = exams
+						user.exams.sort(function(a, b) {
+							if (a.exam_id < b.exam_id) {
+								return -1;
+							} else {
+								return 1;
+							}
+						});
+						finishOne(user);
+					}
+				});
+			})();
 		}
 	});
 }
 
+Exam.getAll = function(callback) {
+	connection.query('SELECT * FROM blueberry.exam', function(err, rows) {
+		if (err) {
+			console.log(err);
+		} else {
+			callback(rows);
+		}
+	});
+}
+Exam.getGrade = function(pagerId, studentId, callback) {
+	connection.query('SELECT * FROM blueberry.exam WHERE pager_id = ? AND student_id = ? ORDER BY exam_grade DESC',[pagerId, studentId], function(err, rows) {
+		if(err) {
+			console.log(err);
+		} else {
+			if(rows.length > 0) {
+				callback(rows[0].exam_grade);
+			} else {
+				callback(-1);
+			}
+		}
+	});
+}
+/*
+Exam.getFullList = function(pageIndex, callback) {
+	User.getStudents(pageIndex, function(users) {
+		var list = [];
+		var finishOne = function(info) {
+			list.push(info);
+			if (list.length == users.length) {
+				callback(list);
+			}
+		}
+		for (var i = 0; i < users.length; i++) {
+			(function() {
+
+			})();
+		}
+	});
+}
+*/
 module.exports = Exam;
