@@ -54,12 +54,17 @@ exports.changePassword = function(req, res, next) {
 	var newPassword = req.body.newPassword;
 	console.log(newPassword);
 	var user = req.session.user;
-	User.changePassword(user.id, user.role, newPassword);
-	var msg = {
-		code: 0,
-		message: "修改密码成功"
-	};
-	res.end(JSON.stringify(msg));
+	User.changePassword(user.id, user.role, newPassword, function(err, rows) {
+		var message;
+		if(err) message = "修改密码失败";
+		else message = "修改密码成功";
+		var msg = {
+			code: 0,
+			message: message
+		};
+		res.end(JSON.stringify(msg));
+	});
+	
 }
 
 /**

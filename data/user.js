@@ -35,9 +35,13 @@ exports.getUserById = function(id, role, callback) {
 // 修改密码
 exports.changePassword = function(id, role, newPassword, callback) {
 	if (role == 'teacher') {
-		connection.query("UPDATE question.teacher SET password = ? WHERE teacher_id = ?", [newPassword, id]);
+		connection.query("UPDATE question.teacher SET password = ? WHERE teacher_id = ?", [newPassword, id], function(err, rows) {
+			callback && callback(err, rows);
+		});
 	} else {
-		connection.query("UPDATE question.student SET password = ? WHERE student_id = ?", [newPassword, id]);
+		connection.query("UPDATE question.student SET password = ? WHERE student_id = ?", [newPassword, id], function(err, rows) {
+			callback && callback(err, rows);
+		});
 	}
 }
 
