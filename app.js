@@ -33,11 +33,6 @@ app.use(require('./controllers/sign').auth_user);
 app.use(function(req, res, next) {
 	res.locals.user = req.session ? req.session.user : "";
 
-	Pager.count(function(count) {
-		res.locals.pagerCount = count;
-	});
-	
-
 	// 查找所有章节
 	Chapter.getAllChapters(function(err, chapters) {
 		if(err) {
@@ -45,8 +40,12 @@ app.use(function(req, res, next) {
 			res.locals.chapters = [];
 			next();
 		}
-		res.locals.chapters = chapters;
-		next();
+		Pager.count(function(count) {
+			res.locals.pagerCount = count;
+			res.locals.chapters = chapters;
+			next();
+		});
+		
 	});
 
 });

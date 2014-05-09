@@ -11,7 +11,7 @@ module.exports = {
   	// mysql数据库
   	mysql_host: 'localhost',
   	mysql_user: 'root',
-  	mysql_pass: '',
+  	mysql_pass: 'root',
     mysql_question_db: 'question',
     mysql_port: '3306',
 
