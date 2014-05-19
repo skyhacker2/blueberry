@@ -1,5 +1,7 @@
 var User = require('../data').User,
+	//validator是表单认证
 	validator = require('validator'),
+	//crypto是加密
 	crypto = require('crypto'),
 	config = require('../config');
 
@@ -62,6 +64,7 @@ exports.changePassword = function(req, res, next) {
 			code: 0,
 			message: message
 		};
+		//把javascript表示成javascript标示符（JSON）字符串
 		res.end(JSON.stringify(msg));
 	});
 	

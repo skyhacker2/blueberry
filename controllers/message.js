@@ -10,6 +10,7 @@ exports.newMessage = function(req, res, next) {
 			code: 0,
 			message: 'ok'
 		};
+		//把javascript转换为javascript表示法（JSON）字符串
 		res.end(JSON.stringify(msg));
 	});
 }
@@ -21,6 +22,7 @@ exports.delete = function(req, res, next) {
 			code: 0,
 			message: 'ok'
 		};
+		//把javascript转换为javascript表示法（JSON）字符串
 		res.end(JSON.stringify(msg));
 	});
 }

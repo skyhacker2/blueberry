@@ -128,6 +128,7 @@ Pager.getList = function(callback) {
 		if(err) {
 			console.log(err);
 		} else {
+			console.log(rows);
 			callback(rows);
 		}
 	});

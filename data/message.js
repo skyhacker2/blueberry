@@ -6,6 +6,7 @@ var Message = {
 };
 
 Message.save = function(title, body, author, callback) {
+	//用来记录现在时间
 	var now = dateFormat('yyyy-MM-dd hh:mm:ss');
 	connection.query("INSERT INTO blueberry.message (msg_title, msg_body, create_time, author) VALUES (?, ?, ?, ?)", 
 		[title, body, now, author], function(err, rows) {
