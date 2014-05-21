@@ -5,29 +5,31 @@
 	</head>
 	<body>
 		<div class="content">
-			<h1>成绩列表</h1>
-			<hr>
-			<table class="table table-bordered">
-  			<thead>
-			  	<tr>
-			  		<th>试卷号</th>
-			  		<th>试卷名</th>
-			  		<th>成绩</th>
-			  		<th>时间</th>
-			  	</tr>
-			  </thead>
-			  <tbody>
-					<%for(var i = 0; i < exams.length; i++) {%>
-						<tr>
-							<td><%=exams[i].pager_id%></td>
-							<td><%=exams[i].pager_title%></td>
-							<td><%=exams[i].exam_grade%></td>
-							<td><%=exams[i].create_time%></td>
-						</tr>
-					<%}%>
-			  </tbody>
-		</table>
-		<% include ../pagination.html%>
+			<div class="center">
+				<h1>成绩列表</h1>
+				<hr>
+				<table class="table table-bordered">
+	  			<thead>
+				  	<tr>
+				  		<th>试卷号</th>
+				  		<th>试卷名</th>
+				  		<th>成绩</th>
+				  		<th>时间</th>
+				  	</tr>
+				  </thead>
+				  <tbody>
+						<%for(var i = 0; i < exams.length; i++) {%>
+							<tr>
+								<td><%=exams[i].pager_id%></td>
+								<td><%=exams[i].pager_title%></td>
+								<td><%=exams[i].exam_grade%></td>
+								<td><%=exams[i].create_time%></td>
+							</tr>
+						<%}%>
+				  </tbody>
+			</table>
+			<% include ../pagination.html%>
+			</div>
 		</div>
 		<% include ../navbar.html%>
 		<script type="text/javascript">

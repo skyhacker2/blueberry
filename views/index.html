@@ -6,22 +6,31 @@
 	<style>
 	.basic-info {
 		position: relative;
-		margin-top: 130px;
+		margin-top: 0px;
 		margin-left: 100px;
 		margin-right: 100px;
+		margin-bottom: 50px;
+		left: 50%;
+		width: 800px;
+		margin-left: -400px;
 	}
 	.basic-info .avatar {
 		position: absolute;
 		left: 0;
 		top: 0;
-		width: 100px;
-		height: 100px;
+		width: 108px;
+		height: 108px;
 		/*border-radius: 50%;*/
 		background-position: 50% 50%;
 		background-repeat: no-repeat;
 		background-size: 100px 100px;
+		background-color: #ffffff;
+		background-image: url(/photo.jpg);
 		float: left;
-		box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+		padding:4px;
+		border-radius: 4px;
+
 	}
 	.basic-info .info {
 		margin-left: 120px;
@@ -40,9 +49,9 @@
 	.head-bg {
 		height: 180px;
 		position: absolute;
-		left: 20px;
+		left: 0px;
 		right: 20px;
-		top: 20px;
+		top: 0px;
 		background-color: #ff0000;
 		z-index: -1px;
 		border-radius: 4px;
@@ -57,9 +66,10 @@
 	<body>
 		<% include navbar.html%>
 		<div class="relavtive content">
-			<div class="head-bg"></div>
+			<!--<div class="head-bg"></div>-->
+
 			<div class="basic-info">
-				<div class="avatar" style="background-image: url(/photo.jpg);"></div>
+				<div class="avatar"></div>
 				<div class="info">
 					<span class="name"><%=user.name%></span>
 					<%if (user.role == 'teacher') {%>
@@ -78,12 +88,14 @@
 				-->
 				</div>
 			</div>
-			<div class="user-content">
-				<%if (user.role == 'student') {%>
-					<% include profile/student-profile.html%>
-				<%} else {%>
-					<% include profile/teacher-profile.html%>
-				<%}%>
+			<div class="center">
+				<div class="user-content">
+					<%if (user.role == 'student') {%>
+						<% include profile/student-profile.html%>
+					<%} else {%>
+						<% include profile/teacher-profile.html%>
+					<%}%>
+				</div>
 			</div>
 		</div>
 	</body>

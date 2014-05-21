@@ -4,6 +4,7 @@
 		<% include ../inc.html%>
 		<script type="text/javascript" src="/libs/validator/validator.min.js"></script>
 		<style>
+		/*
 		.content {
 			margin-bottom: 80px !important;
 			max-width:800px !important;
@@ -11,7 +12,7 @@
 			margin-left: auto !important;
 			margin-right: auto !important;
 		}
-
+		*/
 		.help-block {
 			color: #ff0000;
 		}
@@ -21,95 +22,95 @@
 		</style>
 	</head>
 	<body>
-		
-	
 		<div class="relavtive content">
-			<h1>试卷信息</h1>
-			<hr>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="page-title">试卷名称</label>
-						<input type="text" id="page-title" class="form-control" value="<%=pager.pagerTitle%>">
-						<span class="help-block"></span>
+			<div class="center">
+				<h1>试卷信息</h1>
+				<hr>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="page-title">试卷名称</label>
+							<input type="text" id="page-title" class="form-control" value="<%=pager.pagerTitle%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="">第几章</label><br>
+							<select class="selectpicker" data-width="365px" name="role" id="select-chapter">
+							  	<%for (var i = 0; i < chapters.length; i++) {%>
+							  		<option value="<%=chapters[i].chapter_id%>">第<%=i+1%>章 <%=chapters[i].title%></option>
+							  	<%}%>
+							</select>
+						</div>
 					</div>
 				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="">第几章</label><br>
-						<select class="selectpicker" data-width="365px" name="role" id="select-chapter">
-						  	<%for (var i = 0; i < chapters.length; i++) {%>
-						  		<option value="<%=chapters[i].chapter_id%>">第<%=i+1%>章 <%=chapters[i].title%></option>
-						  	<%}%>
-						</select>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="signle-num">单选题数目</label>
+							<input type="text" id="single-num" class="form-control" value="<%=pager.singleNum%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="single-grade">每道单选题分数</label>
+							<input type="text" id="single-grade" class="form-control" value="<%=pager.singleGrade%>">
+							<span class="help-block"></span>
+						</div>
 					</div>
 				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="multiple-num">多选题数目</label>
+							<input type="text" id="multiple-num" class="form-control" value="<%=pager.multipleNum%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="mulitiple-grade">每道多选题分数</label>
+							<input type="text" id="mulitiple-grade" class="form-control" value="<%=pager.multipleGrade%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="judge-num">判断题数目</label>
+							<input type="text" id="judge-num" class="form-control" value="<%=pager.judgeNum%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="judge-grade">每道判断分数</label>
+							<input type="text" id="judge-grade" class="form-control" value="<%=pager.judgeGrade%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="fill-num">填空题数目</label>
+							<input type="text" id="fill-num" class="form-control" value="<%=pager.fillNum%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group">
+							<label for="fill-grade">每道填空题分数</label>
+							<input type="text" id="fill-grade" class="form-control" value="<%=pager.fillGrade%>">
+							<span class="help-block"></span>
+						</div>
+					</div>
+				</div>
+				<h4>总分<span class="grade"></span></h4>
 			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="signle-num">单选题数目</label>
-						<input type="text" id="single-num" class="form-control" value="<%=pager.singleNum%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="single-grade">每道单选题分数</label>
-						<input type="text" id="single-grade" class="form-control" value="<%=pager.singleGrade%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="multiple-num">多选题数目</label>
-						<input type="text" id="multiple-num" class="form-control" value="<%=pager.multipleNum%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="mulitiple-grade">每道多选题分数</label>
-						<input type="text" id="mulitiple-grade" class="form-control" value="<%=pager.multipleGrade%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="judge-num">判断题数目</label>
-						<input type="text" id="judge-num" class="form-control" value="<%=pager.judgeNum%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="judge-grade">每道判断分数</label>
-						<input type="text" id="judge-grade" class="form-control" value="<%=pager.judgeGrade%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="fill-num">填空题数目</label>
-						<input type="text" id="fill-num" class="form-control" value="<%=pager.fillNum%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="form-group">
-						<label for="fill-grade">每道填空题分数</label>
-						<input type="text" id="fill-grade" class="form-control" value="<%=pager.fillGrade%>">
-						<span class="help-block"></span>
-					</div>
-				</div>
-			</div>
-			<h4>总分<span class="grade"></span></h4>
 		</div>
 		<% include steps.html%>
 		<% include ../navbar.html%>

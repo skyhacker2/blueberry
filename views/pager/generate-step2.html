@@ -41,6 +41,7 @@
 			line-height: 39px;
 			color: #000;
 		}
+		/*
 		.content {
 			padding-bottom: 60px;
 			max-width:800px !important;
@@ -48,6 +49,7 @@
 			margin-left: auto !important;
 			margin-right: auto !important;
 		}
+		*/
 		hr {
 			margin-bottom: 40px;
 		}
@@ -56,134 +58,136 @@
 	<body>
 		
 		<div class="relavtive content">
-			<h1>选择试题</h1>
-			<hr>
-			<div class="question-group">
-				<h2>单选题</h2>
-				<div>
-					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.singleNum%>题, 已经选择: <span id="single-selected-num"><%=pager.singles.length%></span>题</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
+			<div class="center">
+				<h1>选择试题</h1>
+				<hr>
+				<div class="question-group">
+					<h2>单选题</h2>
+					<div>
+						<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+						<p>你设置了: <%=pager.singleNum%>题, 已经选择: <span id="single-selected-num"><%=pager.singles.length%></span>题</p>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
 
-						<div class="select-box">
-							<ul class="questions questions-left single">
-								<%for(var i = 0; i < pager.singles.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=pager.singles[i].question_id%>"><%=pager.singles[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
+							<div class="select-box">
+								<ul class="questions questions-left single">
+									<%for(var i = 0; i < pager.singles.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=pager.singles[i].question_id%>"><%=pager.singles[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-right single">
-								<%for(var i = 0; i < questions.singles.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=questions.singles[i].question_id%>"><%=questions.singles[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-right single">
+									<%for(var i = 0; i < questions.singles.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=questions.singles[i].question_id%>"><%=questions.singles[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<!-- 多选题 -->
-			<div class="question-group">
-				<h2>多选题</h2>
-				<div>
-					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.multipleNum%>题, 已经选择: <span id="multiple-selected-num"><%=pager.multiples.length%></span>题</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-left multiple">
-								<%for(var i = 0; i < pager.multiples.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=pager.multiples[i].question_id%>"><%=pager.multiples[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
-						</div>
+				<!-- 多选题 -->
+				<div class="question-group">
+					<h2>多选题</h2>
+					<div>
+						<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+						<p>你设置了: <%=pager.multipleNum%>题, 已经选择: <span id="multiple-selected-num"><%=pager.multiples.length%></span>题</p>
 					</div>
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-right multiple">
-								<%for(var i = 0; i < questions.multiples.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=questions.multiples[i].question_id%>"><%=questions.multiples[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-left multiple">
+									<%for(var i = 0; i < pager.multiples.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=pager.multiples[i].question_id%>"><%=pager.multiples[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<!-- 判断题 -->
-			<div class="question-group">
-				<h2>判断题</h2>
-				<div>
-					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.judgeNum%>题, 已经选择: <span id="judge-selected-num"><%=pager.judges.length%></span>题</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-left judge">
-								<%for(var i = 0; i < pager.judges.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=pager.judges[i].question_id%>"><%=pager.judges[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-right judge">
-								<%for(var i = 0; i < questions.judges.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=questions.judges[i].question_id%>"><%=questions.judges[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-right multiple">
+									<%for(var i = 0; i < questions.multiples.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=questions.multiples[i].question_id%>"><%=questions.multiples[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
+				<!-- 判断题 -->
+				<div class="question-group">
+					<h2>判断题</h2>
+					<div>
+						<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+						<p>你设置了: <%=pager.judgeNum%>题, 已经选择: <span id="judge-selected-num"><%=pager.judges.length%></span>题</p>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-left judge">
+									<%for(var i = 0; i < pager.judges.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=pager.judges[i].question_id%>"><%=pager.judges[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-right judge">
+									<%for(var i = 0; i < questions.judges.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=questions.judges[i].question_id%>"><%=questions.judges[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 
-			<!-- 填空题 -->
-			<div class="question-group last">
-				<h2>填空题</h2>
-				<div>
-					<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
-					<p>你设置了: <%=pager.fillNum%>题, 已经选择: <span id="fill-selected-num"><%=pager.fills.length%></span>题</p>
-				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-left fill">
-								<%for(var i = 0; i < pager.fills.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=pager.fills[i].question_id%>"><%=pager.fills[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
-						</div>
+				<!-- 填空题 -->
+				<div class="question-group last">
+					<h2>填空题</h2>
+					<div>
+						<!--<button class="btn btn-default" id="remove-all-question">移除全部</button>-->
+						<p>你设置了: <%=pager.fillNum%>题, 已经选择: <span id="fill-selected-num"><%=pager.fills.length%></span>题</p>
 					</div>
-					<div class="col-md-6">
-						<div class="select-box">
-							<ul class="questions questions-right fill">
-								<%for(var i = 0; i < questions.fills.length; i++) {%>
-									<li>
-										<a class="parent" href="javascript:void(0);" data-id="<%=questions.fills[i].question_id%>"><%=questions.fills[i].topic%></a>
-									</li>
-								<%}%>
-							</ul>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-left fill">
+									<%for(var i = 0; i < pager.fills.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=pager.fills[i].question_id%>"><%=pager.fills[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="select-box">
+								<ul class="questions questions-right fill">
+									<%for(var i = 0; i < questions.fills.length; i++) {%>
+										<li>
+											<a class="parent" href="javascript:void(0);" data-id="<%=questions.fills[i].question_id%>"><%=questions.fills[i].topic%></a>
+										</li>
+									<%}%>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</div>

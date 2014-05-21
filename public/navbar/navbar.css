@@ -4,8 +4,9 @@
 	top:0px;
 	bottom: 0px;
 	width:65px;
-	background-color: #f4f4f4;
 	display: block;
+	background-color: rgba(255,255,255,0.5);
+	box-shadow: 5px 0px 10px rgba(0,0,0,0.2);
 }
 .app-bar.mouse-enter {
 	width: 220px;
@@ -19,7 +20,6 @@
 	bottom: 40px;
 	width: 65px;
 	overflow: hidden;
-	background-color: #dddddd;
 }
 .main-menu ul {
 	list-style: none;
@@ -41,7 +41,7 @@
 	width: 100%;
 }
 .main-menu ul li:hover {
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.5);
 }
 .main-menu ul a:hover{
 	color: #555;
@@ -60,7 +60,7 @@
 	float: left;
 }
 .main-menu ul li.active {
-	background-color: #fff;
+	background-color: rgba(255,255,255,0.5);
 }
 .main-menu .fa {
 	line-height: 52px;
@@ -129,6 +129,8 @@ body.long-menu.sub-menu-shown .content {
 	display: block;
 	width: 100%;
 	color: #888;
+	background-color: rgba(255,255,255,0.5);
+
 }
 .handler:hover {
 	background-color: #ccc;
@@ -219,4 +221,27 @@ body.long-menu.sub-menu-shown .content {
 }
 .app-bar .sub-menu.shown .footer {
 	display: block;
+}
+body {
+	background-image: url('/xin-c.jpg');
+	background-attachment: fixed;
+}
+.content-panel {
+	background-color: rgba(255,255,255,0.75);
+	border-radius: 4px;	
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.center {
+	position: absolute;
+	left: 50%;
+	height: auto;
+	width: 800px;
+	margin-left: -400px;
+	background-color: rgba(255,255,255,1);
+	border-radius: 4px;	
+	padding-left: 20px;
+	padding-right: 20px;
+	box-shadow: 5px 0px 10px rgba(0,0,0,0.2);
+	margin-bottom: 100px;
 }

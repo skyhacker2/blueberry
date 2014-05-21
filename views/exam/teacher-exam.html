@@ -5,34 +5,36 @@
 	</head>
 	<body>
 		<div class="content">
-			<h1>成绩列表</h1>
-			<hr>
-			<div class="table-responsive">
-				<table class="table table-bordered">
-	  			<thead>
-				  	<tr>
-				  		<th>学号</th>
-				  		<th>姓名</th>
-				  		<%for (var i = 0; i < pagers.length; i++) {%>
-				  			<th><%=pagers[i].title%></th>
-				  		<%}%>
-				  	</tr>
-				</thead>
-				<tbody>
-					<%for(var i = 0; i < infos.length; i++) {%>	
-						<tr>
-							<td><%=infos[i].student_id%></td>
-							<td><%=infos[i].student_name%></td>
-							<%for (var j = 0; j < infos[i].grades.length; j++){%> 
-								<td><%=infos[i].grades[j]%></td>
-							<%}%>
-						</tr>
-						
-					<%}%>
-				</tbody>
-			</table>
-		</div>
-		<% include ../pagination.html%>
+			<div class="center">
+				<h1>成绩列表</h1>
+				<hr>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+		  			<thead>
+					  	<tr>
+					  		<th>学号</th>
+					  		<th>姓名</th>
+					  		<%for (var i = 0; i < pagers.length; i++) {%>
+					  			<th><%=pagers[i].title%></th>
+					  		<%}%>
+					  	</tr>
+					</thead>
+					<tbody>
+						<%for(var i = 0; i < infos.length; i++) {%>	
+							<tr>
+								<td><%=infos[i].student_id%></td>
+								<td><%=infos[i].student_name%></td>
+								<%for (var j = 0; j < infos[i].grades.length; j++){%> 
+									<td><%=infos[i].grades[j]%></td>
+								<%}%>
+							</tr>
+							
+						<%}%>
+					</tbody>
+				</table>
+			</div>
+			<% include ../pagination.html%>
+			</div>
 		</div>
 		<% include ../navbar.html%>
 		<script type="text/javascript">
