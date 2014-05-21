@@ -2,13 +2,25 @@
 	<head>
 		<title>成绩列表</title>
 		<% include ../inc.html%>
+		<style>
+			.my-table {
+				overflow-y: auto;
+			}
+			td, th{
+				width: 150px;
+			}
+			table {
+				width: auto;
+				table-layout: fixed;
+			}
+		</style>
 	</head>
 	<body>
 		<div class="content">
 			<div class="center">
 				<h1>成绩列表</h1>
 				<hr>
-				<div class="table-responsive">
+				<div class="my-table">
 					<table class="table table-bordered">
 		  			<thead>
 					  	<tr>
