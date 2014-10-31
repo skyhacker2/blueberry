@@ -35,6 +35,7 @@ $(document).ready(function() {
 		
 	});
 
+
 	$('.content').on('click', function() {
 		$('.app-bar .sub-menu').removeClass('shown');
 		$(document.body).removeClass('sub-menu-shown');
